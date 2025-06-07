@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "655780948496",
+    "project_id": "ccell-b8c42",
+    "storage_bucket": "ccell-b8c42.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655780948496:android:c5be431dbd562f7b453895",
+        "android_client_info": {
+          "package_name": "com.example.ccell_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZvq01FIpK62QE9OCovHyz_eOsY7ctwaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
