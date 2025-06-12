@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'gymkhana.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -35,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   static final List<Widget> _pages = <Widget>[
     const SimplePage(title: 'Home Page'),
-    const SimplePage(title: 'Gymkhana Page'),
+    const GymkhanaPage(), // Actual Gymkhana page
     const SimplePage(title: 'Notifications Page'),
     const SimplePage(title: "PYQ's Page"),
     const SimplePage(title: 'More Page'),
@@ -52,7 +54,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Stack(
         children: [
-          _pages[_selectedIndex],
+          // Smooth fade animation when switching tabs
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: _pages[_selectedIndex],
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -70,34 +76,37 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               child: BottomNavigationBar(
-                currentIndex: _selectedIndex,
-                onTap: _onItemTapped,
-                type: BottomNavigationBarType.fixed,
-                selectedItemColor: Colors.deepPurple,
-                unselectedItemColor: Colors.grey,
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.sports),
-                    label: 'Gymkhana',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.notifications),
-                    label: 'Notifications',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.book),
-                    label: "PYQ's",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.more_horiz),
-                    label: 'More',
-                  ),
-                ],
-              ),
+  currentIndex: _selectedIndex,
+  onTap: _onItemTapped,
+  type: BottomNavigationBarType.fixed,
+  backgroundColor: Colors.black, // black nav bar like your image
+  selectedItemColor: Colors.white, // white selected icon
+  unselectedItemColor: Colors.grey, // grey unselected
+  showUnselectedLabels: true,
+  items: const [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: 'Home',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.sports),
+      label: 'Gymkhana',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.notifications),
+      label: 'Notifications',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.book),
+      label: "PYQ's",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.more_horiz),
+      label: 'More',
+    ),
+  ],
+),
+
             ),
           ),
         ],
