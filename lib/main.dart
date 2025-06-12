@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -139,66 +140,80 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple, // match your dark theme
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Top Banner + Avatar
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                // Banner
-                Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/y24.jpg'),
-                      fit: BoxFit.cover,
-                    ),
+      body: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          // Top Banner + Avatar
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              // Banner
+              Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/y24.jpg'),
+                    fit: BoxFit.cover,
                   ),
-                ),
-
-                // Circle Avatar
-                Positioned(
-                  left: 16,
-                  bottom: -40,
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Colors.grey.shade300,
-                    child: Icon(Icons.person, size: 40),
-                  ),
-                ),
-              ],
-            ),
-
-            SizedBox(height: 50),
-
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                "The LNM Institute of Information Technology",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
+
+              // Circle Avatar
+              Positioned(
+                left: 16,
+                bottom: -40,
+                child: CircleAvatar(
+                  radius: 40,
+                  backgroundColor: Colors.grey.shade300,
+                  child: Icon(Icons.person, size: 40),
+                ),
+              ),
+            ],
+          ),
+
+          SizedBox(height: 50),
+
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              "The LNM Institute of Information Technology",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
             ),
+          ),
 
-            SizedBox(height: 10),
+          SizedBox(height: 10),
 
-            // Description
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text("description", style: TextStyle(color: Colors.white)),
+          // Description
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text("description", style: TextStyle(color: Colors.white)),
+          ),
+
+          SizedBox(height: 20),
+
+          Coordinators(),
+          SizedBox(height: 20),
+          AssociateCoordi(),
+          SizedBox(height: 20),
+          TeamMentors(),
+          SizedBox(height: 20),
+          Text(
+            "Convener's Message",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
-
-            SizedBox(height: 20),
-
-            Coordinators(),
-            SizedBox(height: 20),
-            AssociateCoordi(),
-          ],
-        ),
+          ),
+          SizedBox(height: 20),
+          AppDeveloper(),
+          SizedBox(height: 200),
+        ],
       ),
     );
   }
@@ -209,33 +224,50 @@ class Coordinators extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Coordinators Y-23",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    return Padding(
+      padding: EdgeInsets.zero,
+      child: Column(
+        children: [
+          Text(
+            "Coordinators Y-23",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        SizedBox(height: 10),
-        Container(
-          height: 220,
-          width: double.infinity,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            children: [
-              CoordiName(name: "Aditya Kansal"),
-              SizedBox(width: 8),
-              CoordiName(name: "Kunal Sharma"),
-              SizedBox(width: 8),
-              CoordiName(name: "Neha Raniwala"),
-            ],
+          SizedBox(height: 10),
+          Container(
+            height: 220,
+            width: double.infinity,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Row(
+                children: [
+                  CoordiName(
+                    name: "Aditya Kansal",
+                    phone: "7037898300",
+                    email: "23ucc506@gmail.com",
+                  ),
+                  SizedBox(width: 8),
+                  CoordiName(
+                    name: "Kunal Sharma",
+                    phone: "9166405904",
+                    email: "23uec563@gmail.com",
+                  ),
+                  SizedBox(width: 8),
+                  CoordiName(
+                    name: "Neha Raniwala",
+                    phone: " 8982919670",
+                    email: "23ucc577@gmail.com",
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -245,84 +277,234 @@ class AssociateCoordi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Associate Coordinators Y-23",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    return Padding(
+      padding: EdgeInsets.zero,
+      child: Column(
+        children: [
+          Text(
+            "Associate Coordinators Y-23",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        SizedBox(height: 10),
-        Container(
-          height: 220,
-          width: double.infinity,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            children: [
-              CoordiName(name: "Atharv Shah"),
-              SizedBox(width: 8),
-              CoordiName(name: "Laxita Sharma"),
-              SizedBox(width: 8),
-              CoordiName(name: "Mudit Choudhary"),
-              SizedBox(width:8),
-              CoordiName(name: "Rahul Sharma"),
-              SizedBox(width: 8),
-              CoordiName(name: "Vibha Gupta"),
-              SizedBox(width: 8),
-              CoordiName(name: "Yash Raj"),
-            ],
+          SizedBox(height: 10),
+          Container(
+            height: 220,
+            width: double.infinity,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Row(
+                children: [
+                  CardName(name: "Atharv Shah"),
+                  SizedBox(width: 8),
+                  CardName(name: "Laxita Sharma"),
+                  SizedBox(width: 8),
+                  CardName(name: "Mudit Choudhary"),
+                  SizedBox(width: 8),
+                  CardName(name: "Rahul Sharma"),
+                  SizedBox(width: 8),
+                  CardName(name: "Vibha Gupta"),
+                  SizedBox(width: 8),
+                  CardName(name: "Yash Raj"),
+                ],
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
+    );
+  }
+}
+
+class TeamMentors extends StatelessWidget {
+  const TeamMentors({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.zero,
+      child: Column(
+        children: [
+          Text(
+            "Team Mentors",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10),
+          Container(
+            height: 220,
+            width: double.infinity,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Row(
+                children: [
+                  CardName(name: "Arpit Joshi"),
+                  SizedBox(width: 8),
+                  CardName(name: "Harshita Sharma"),
+                  SizedBox(width: 8),
+                  CardName(name: "Naman Agarwal"),
+                  SizedBox(width: 8),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
 class CoordiName extends StatelessWidget {
   final String name;
-  const CoordiName({super.key, required this.name});
+  final String phone;
+  final String email;
+  const CoordiName({
+    super.key,
+    required this.name,
+    required this.phone,
+    required this.email,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white70,
-        borderRadius: BorderRadius.circular(18),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white70,
+          borderRadius: BorderRadius.circular(18),
+        ),
+        width: 150,
+        height: 200,
+        child: Column(
+          children: [
+            SizedBox(height: 20),
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.grey.shade300,
+              child: Icon(Icons.person, size: 60),
+            ),
+            SizedBox(height: 10),
+            Text(name, style: TextStyle(color: Colors.black, fontSize: 16)),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    final Uri phoneUri = Uri(scheme: 'tel', path: phone);
+                    if (await canLaunchUrl(phoneUri)) {
+                      await launchUrl(phoneUri);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Cannot launch phone app")),
+                      );
+                    }
+                  },
+                  child: Image.asset('assets/phone_icon.png', width: 30),
+                ),
+                SizedBox(width: 16),
+                GestureDetector(
+                  onTap: () async {
+                    final Uri emailUri = Uri(scheme: 'mailto', path: email);
+                    if (await canLaunchUrl(emailUri)) {
+                      await launchUrl(emailUri);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Cannot launch email app")),
+                      );
+                    }
+                  },
+                  child: Image.asset('assets/gmail.png', width: 30),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-      width: 150,
-      height: 200,
+    );
+  }
+}
+
+class CardName extends StatelessWidget {
+  final String name;
+  const CardName({super.key, required this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white70,
+          borderRadius: BorderRadius.circular(18),
+        ),
+        width: 150,
+        height: 200,
+        child: Column(
+          children: [
+            SizedBox(height: 20),
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.grey.shade300,
+              child: Icon(Icons.person, size: 60),
+            ),
+            SizedBox(height: 10),
+            Text(name, style: TextStyle(color: Colors.black, fontSize: 16)),
+            SizedBox(height: 10),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AppDeveloper extends StatelessWidget {
+  const AppDeveloper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.zero,
       child: Column(
         children: [
-          SizedBox(height: 20),
-          CircleAvatar(
-            radius: 50,
-            backgroundColor: Colors.grey.shade300,
-            child: Icon(Icons.person, size: 60),
+          Text(
+            "App Developers",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           SizedBox(height: 10),
-          Text(name, style: TextStyle(color: Colors.black, fontSize: 16)),
-          SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  () => {};
-                },
-                child: Image.asset('assets/phone_icon.png', width: 30),
+          Container(
+            height: 220,
+            width: double.infinity,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Row(
+                children: [
+                  CardName(name: "Nikhila S Hari"),
+                  SizedBox(width: 8),
+                  CardName(name: "Panth Moradia"),
+                  SizedBox(width: 8),
+                  CardName(name: "Ishita Agarwal"),
+                  SizedBox(width: 8),
+                   CardName(name: "Praneel"),
+                  SizedBox(width: 8),
+                  CardName(name: "Armaan Jain"),
+                  SizedBox(width: 8),
+                ],
               ),
-              SizedBox(width: 16),
-              GestureDetector(
-                onTap: () {
-                  () => {};
-                },
-                child: Image.asset('assets/gmail.png', width: 30),
-              ),
-            ],
+            ),
           ),
         ],
       ),
