@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
 import 'pages/impContacts.dart';
@@ -17,7 +19,7 @@ class LNMPage extends StatelessWidget {
       backgroundColor: const Color(0xFF0E1A23),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(14.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -66,16 +68,15 @@ class LNMPage extends StatelessWidget {
               //   }),
               // ]),
               // const SizedBox(height: 32),
-              const Text(
+              Text(
                 'FACULTIES',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               _buildCardGrid([
                 _CardData('Important\nContacts', Icons.contact_phone, () {
                   Navigator.push(context, MaterialPageRoute(
@@ -98,17 +99,16 @@ class LNMPage extends StatelessWidget {
                   ));
                 }),
               ]),
-              const SizedBox(height: 32),
-              const Text(
+               SizedBox(height: 28.h),
+              Text(
                 'MISCELLANEOUS',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
                 ),
               ),
-              const SizedBox(height: 16),
+               SizedBox(height: 14.h),
               _buildCardGrid([
                 _CardData('Campus Map', Icons.map, () async {
                   const url = 'https://example.com';
@@ -142,10 +142,10 @@ class LNMPage extends StatelessWidget {
                   ));
                 }),
               ]),
-              const SizedBox(height: 32),
-              const Text(
+              SizedBox(height: 28.h),
+              Text(
                 'DIRECTOR\'S MESSAGE',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,

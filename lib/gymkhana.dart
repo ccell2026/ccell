@@ -21,20 +21,39 @@ class GymkhanaPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'STUDENT GYMKHANA',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 35.sp,
-                  fontWeight: FontWeight.bold,
-                  height: 1.2,
-                ),
-              ),
-              SizedBox(height: 15.h),
-              Text(
-                "The Students' Gymkhana is the official student-governing body of The LNMIIT, Jaipur, dedicated to representing and advancing the interests of the student community. Established in 2006, it plays a vital role in nurturing leadership, promoting dialogue, and building a participatory campus culture. Under the guidance of the Institute's Director, the Gymkhana acts as a bridge between the administration and the students, enabling communication, decision-making, and policy participation that directly impacts student life.",
-                style: GoogleFonts.inter(color: Colors.white, fontSize: 10.sp),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 4.w),
+                    child: Container(
+                      padding: EdgeInsets.all(10.h),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Color(0xFF353F54), Color(0xFF222834)],
+                        ),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Icon(
+                        Icons.account_balance_rounded,
+                        color: Colors.white,
+                        size: 32.r,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Text(
+                      'STUDENT GYMKHANA',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 25.sp,
+                        fontWeight: FontWeight.w800,
+                        //letterSpacing: -1,
+                        height: 1.1,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 30.h),
               presidentTile(
@@ -55,8 +74,40 @@ class GymkhanaPage extends StatelessWidget {
                 "8077054850",
                 "gym.financeconvenor@lnmiit.ac.in",
               ),
-              SizedBox(height: 20.h),
-              buildSectionTitle("PRESIDENTIAL COUNCIL"),
+              SizedBox(height: 30.h),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 5.w),
+                    child: Container(
+                      padding: EdgeInsets.all(10.h),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Color(0xFF353F54), Color(0xFF222834)],
+                        ),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Icon(
+                        Icons.groups_rounded,
+                        color: Colors.white,
+                        size: 32.r,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 16.w),
+                  Expanded(
+                    child: Text(
+                      'PRESIDENTIAL COUNCIL',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w800,
+                        height: 1.1,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(height: 16.h),
               GridView.count(
                 shrinkWrap: true,
@@ -92,12 +143,12 @@ class GymkhanaPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 40.h),
+              SizedBox(height: 35.h),
               Text(
                 'STUDENT FESTS',
                 style: GoogleFonts.poppins(
                   color: Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: 26,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -230,7 +281,7 @@ class GymkhanaPage extends StatelessWidget {
                 'STUDENT EVENTS',
                 style: GoogleFonts.poppins(
                   color: Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: 26,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -430,6 +481,7 @@ Widget presidentTile(
     decoration: BoxDecoration(
       color: const Color(0xFF1C2834),
       borderRadius: BorderRadius.circular(12.r),
+      border: Border.all(color: Colors.white.withOpacity(0.2), width: 2.w),
     ),
     margin: EdgeInsets.only(bottom: 12.h),
     child: ListTile(
@@ -476,4 +528,41 @@ void _launchEmail(String email) async {
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri);
   }
+}
+
+Widget _buildHeroSection() {
+  return Container(
+    padding: EdgeInsets.all(15.h),
+    decoration: BoxDecoration(
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Color(0xFF353F54), Color(0xFF222834)],
+      ),
+      borderRadius: BorderRadius.circular(24),
+      boxShadow: [
+        BoxShadow(
+          color: const Color(0xFF3B82F6).withOpacity(0.3),
+          blurRadius: 20,
+          spreadRadius: 0,
+          offset: const Offset(0, 10),
+        ),
+      ],
+    ),
+    child: Column(
+      children: [
+        const SizedBox(height: 24),
+        // Text(
+        //   "The Students' Gymkhana is the official student-governing body of The LNMIIT, Jaipur, dedicated to representing and advancing the interests of the student community.",
+        //   style: GoogleFonts.inter(
+        //     color: Colors.white.withOpacity(0.9),
+        //     fontSize: 12,
+        //     //height: 1.6,
+        //     //fontWeight: FontWeight.w400,
+        //   ),
+        //   textAlign: TextAlign.center,
+        // ),
+      ],
+    ),
+  );
 }
