@@ -134,7 +134,7 @@ class LNMPage extends StatelessWidget {
                       builder: (context) => const PDFViewerPage(
                         title: 'Academic Area Map',
                         pdfUrl:
-                            'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/AcadsAreamap.pdf',
+                            'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/acadsmap/AcadsAreamap.pdf',
                       ),
                     ),
                   );
