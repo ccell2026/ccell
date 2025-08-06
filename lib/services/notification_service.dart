@@ -15,9 +15,9 @@ class NotificationService {
       );
 
       if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-        if (kDebugMode) {
+          if (kDebugMode) {
           print("✅ Notification permissions granted");
-        }
+          }
       } else {
         if (kDebugMode) {
           print("❌ Notification permissions denied");

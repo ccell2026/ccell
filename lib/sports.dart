@@ -9,8 +9,9 @@ class SportsCouncil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: const Color(0xFF0E1A23),
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -39,16 +40,16 @@ class SportsCouncil extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.all(4.w),
                           decoration: BoxDecoration(
-                            color: Color(0xFF1C2834),
+                            color: theme.colorScheme.surface,
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: Colors.white.withOpacity(0.2),
+                              color: theme.colorScheme.onSurface.withOpacity(0.2),
                               width: 2,
                             ),
                           ),
                           child: Icon(
                             Icons.keyboard_arrow_left,
-                            color: Colors.white,
+                            color: theme.colorScheme.onSurface,
                             size: 30.sp,
                           ),
                         ),
@@ -62,7 +63,10 @@ class SportsCouncil extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: Text(
                   "The Sports Council at LNMIIT is an integral and dynamic component of the Student Gymkhana, fundamentally dedicated to invigorating the physical well-being and competitive spirit of the entire student body. It champions a culture of athleticism, perseverance, and teamwork, recognizing that excellence extends beyond the academic realm.",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 10.sp),
+                  style: GoogleFonts.inter(
+                    color: theme.colorScheme.onSurface,
+                    fontSize: 10.sp
+                  ),
                 ),
               ),
               SizedBox(height: 20.h),
@@ -440,6 +444,7 @@ Widget squareCard(
   List<Map<String, String>> cordies,
   String instaUrl,
 ) {
+  final theme = Theme.of(context);
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16.r),
@@ -464,13 +469,9 @@ Widget squareCard(
         height: 100.h,
         padding: EdgeInsets.all(8.r),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF353F54), Color(0xFF222834)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+          color: theme.colorScheme.onPrimary,
           borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(color: Colors.white.withOpacity(0.2), width: 2.w),
+          border: Border.all(color: theme.colorScheme.onPrimary.withOpacity(0.2), width: 2.w),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -478,14 +479,14 @@ Widget squareCard(
             CircleAvatar(
               backgroundImage: AssetImage(logoUrl),
               radius: 40.r,
-              backgroundColor: Colors.transparent,
+              backgroundColor: theme.colorScheme.onPrimary,
             ),
             SizedBox(height: 8.h),
             Text(
               label,
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
-                color: Colors.white,
+                color: theme.colorScheme.onSurface,
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w600,
               ),
@@ -503,44 +504,49 @@ Widget _buildGSecTile(
   String phoneUrl,
   String mailUrl,
 ) {
-  return Container(
-    margin: EdgeInsets.only(bottom: 12.h),
-    decoration: BoxDecoration(
-      color: const Color(0xFF1C2834),
-      borderRadius: BorderRadius.circular(12.r),
-      border: Border.all(color: Colors.white.withOpacity(0.2), width: 2.w),
-    ),
-    child: ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
-      title: Text(
-        name,
-        style: GoogleFonts.inter(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 14.sp,
+  return Builder(
+    builder: (context) {
+      final theme = Theme.of(context);
+      return Container(
+        margin: EdgeInsets.only(bottom: 12.h),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(color: theme.colorScheme.onSurface.withOpacity(0.2), width: 2.w),
         ),
-      ),
-      subtitle: Text(
-        post,
-        style: GoogleFonts.inter(
-          color: Color.fromARGB(255, 192, 190, 190),
-          fontSize: 10.sp,
+        child: ListTile(
+          contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
+          title: Text(
+            name,
+            style: GoogleFonts.inter(
+              color: theme.colorScheme.onSurface,
+              fontWeight: FontWeight.bold,
+              fontSize: 14.sp,
+            ),
+          ),
+          subtitle: Text(
+            post,
+            style: GoogleFonts.inter(
+              color: theme.colorScheme.onSurface.withOpacity(0.7),
+              fontSize: 10.sp,
+            ),
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: Icon(Icons.phone, color: theme.colorScheme.secondary, size: 20.sp),
+                onPressed: () => _launchPhone(phoneUrl),
+              ),
+              IconButton(
+                icon: Icon(Icons.email, color: theme.colorScheme.tertiary, size: 20.sp),
+                onPressed: () => _launchEmail(mailUrl),
+              ),
+            ],
+          ),
         ),
-      ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: Icon(Icons.phone, color: Colors.greenAccent, size: 20.sp),
-            onPressed: () => _launchPhone(phoneUrl),
-          ),
-          IconButton(
-            icon: Icon(Icons.email, color: Colors.lightBlueAccent, size: 20.sp),
-            onPressed: () => _launchEmail(mailUrl),
-          ),
-        ],
-      ),
-    ),
+      );
+    }
   );
 }
 

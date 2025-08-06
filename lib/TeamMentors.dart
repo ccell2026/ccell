@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/NewMember.dart';
@@ -11,12 +10,13 @@ class TeamMentors extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
       children: [
         Text(
           title,
           style: GoogleFonts.poppins(
-            color: Colors.white,
+            color: theme.colorScheme.onSurface,
             fontSize: 20,
             fontWeight: FontWeight.w500,
           ),
@@ -48,40 +48,39 @@ class MentorCard  extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     double screenWidth = MediaQuery.of(context).size.width;
-   double screenHeight = MediaQuery.of(context).size.width;
-    double cardWidth = screenWidth * 0.45; 
-  double cardHeight = screenWidth * 0.4; 
+    double cardWidth = screenWidth * 0.35;
     return Container(
       width: cardWidth,
-      height: cardHeight,
-     decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF353F54),Color(0xFF222834),],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.white.withOpacity(0.2), width: 2)
-        ),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.onPrimary,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: theme.colorScheme.onSurface.withOpacity(0.2),
+          width: 2
+        )
+      ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 20),
           CircleAvatar(
             radius: 50,
             backgroundImage: AssetImage(member.imagePath),
-            backgroundColor: Colors.grey.shade300,
+            backgroundColor: theme.colorScheme.surface,
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
           Text(
             member.name,
-           style: GoogleFonts.inter(color: Colors.white, fontSize: 17),
             textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(
+              color: theme.colorScheme.onBackground,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       ),
     );
   }
 }
-
-

@@ -21,8 +21,9 @@ class COSHAScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Color(0xFF001219),
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Container(
         child: SingleChildScrollView(
           child: Column(
@@ -51,16 +52,16 @@ class COSHAScreen extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.all(4.w),
                           decoration: BoxDecoration(
-                            color: Color(0xFF1C2834),
+                            color: theme.colorScheme.surface,
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: Colors.white.withOpacity(0.2),
+                              color: theme.colorScheme.onSurface.withOpacity(0.2),
                               width: 2,
                             ),
                           ),
                           child: Icon(
                             Icons.keyboard_arrow_left,
-                            color: Colors.white,
+                            color: theme.colorScheme.onSurface,
                             size: 30.sp,
                           ),
                         ),
@@ -74,7 +75,10 @@ class COSHAScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 8.w),
                 child: Text(
                   "A college is composed of many things: students, professors, academic blocks, hostels, mess etc. For the proper functioning of everything lying beneath the biosphere of Hostels, Mess and Canteen, Committee of Students for Hostel Affairs (COSHA) is the way to go. COSHA supervises all matters of common interest to the Hostels, whilst handling queries, complaints and suggestions regarding Mess and Canteen. Be it improving the mess menu, lodging a complaint regarding canteen shops, or raising a query related to the habitable conditions of hostels; Cosha is inculcated with the responsibility of being the voice of students and relaying their valid concerns to the higher authorities. A meeting of COSHA is chaired by the President, and consists of the Convenor of COSHA, Hall Representatives and Chief Warden/Wardens. In a meeting, COSHA puts forward the students’ candid views and tries to establish a common ground. COSHA believes in eliminating all complaints, relaying constructive suggestions and maintaining transparency at all fronts.",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 9.sp),
+                  style: GoogleFonts.inter(
+                    color: theme.colorScheme.onSurface,
+                    fontSize: 9.sp,
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -82,10 +86,10 @@ class COSHAScreen extends StatelessWidget {
                 padding: EdgeInsets.all(8.w),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0xFF1C2834),
+                    color: theme.colorScheme.surface,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.2),
+                      color: theme.colorScheme.onSurface.withOpacity(0.2),
                       width: 2.w,
                     ),
                   ),
@@ -97,7 +101,7 @@ class COSHAScreen extends StatelessWidget {
                     title: Text(
                       "Mr. Ashish Goyal",
                       style: GoogleFonts.inter(
-                        color: Colors.white,
+                        color: theme.colorScheme.onSurface,
                         fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                       ),
@@ -105,7 +109,7 @@ class COSHAScreen extends StatelessWidget {
                     subtitle: Text(
                       "COSHA Head",
                       style: GoogleFonts.inter(
-                        color: const Color.fromARGB(255, 192, 190, 190),
+                        color: theme.colorScheme.onSurface.withOpacity(0.7),
                         fontSize: 10.sp,
                       ),
                     ),
@@ -114,11 +118,11 @@ class COSHAScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () => _launchPhone("6377079159"),
-                          icon: Icon(Icons.call, color: Colors.greenAccent),
+                          icon: Icon(Icons.call, color: theme.colorScheme.secondary),
                         ),
                         IconButton(
                           onPressed: () => _launchEmail("cosha@lnmiit.ac.in"),
-                          icon: Icon(Icons.mail, color: Colors.lightBlueAccent),
+                          icon: Icon(Icons.mail, color: theme.colorScheme.tertiary),
                         ),
                       ],
                     ),

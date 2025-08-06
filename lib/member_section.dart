@@ -16,12 +16,13 @@ class MemberSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
       children: [
         Text(
           title,
           style: GoogleFonts.poppins(
-            color: Colors.white,
+            color: theme.colorScheme.onBackground,
             fontSize: 20,
             fontWeight: FontWeight.w500,
           ),

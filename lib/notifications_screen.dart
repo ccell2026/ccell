@@ -51,11 +51,22 @@ class _NotificationPageState extends State<NotificationsPage> {
     return DateFormat("d MMMM, yyyy").format(date);
   }
 
+  Color withOpacity(Color color, double opacity) {
+    return Color.fromARGB(
+      (opacity * 255).round(),
+      (color.r * 255.0).round() & 0xff,
+      (color.g * 255.0).round() & 0xff,
+      (color.b * 255.0).round() & 0xff,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Theme.of(context);
+    final Color fadedOnSurface = themeData.colorScheme.onSurface.withAlpha(178);
+
     return Scaffold(
-      backgroundColor: const Color(0xFF0E1A23),
+      backgroundColor: themeData.scaffoldBackgroundColor,
       body: RefreshIndicator(
         onRefresh: _refreshNotifications,
         child: SafeArea(
@@ -71,13 +82,16 @@ class _NotificationPageState extends State<NotificationsPage> {
                         padding: EdgeInsets.all(10.h),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0xFF353F54), Color(0xFF222834)],
+                            colors: [
+                              themeData.colorScheme.surface,
+                              themeData.colorScheme.surface.withAlpha(178),
+                            ],
                           ),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Icon(
                           Icons.notifications_active,
-                          color: Colors.white,
+                          color: themeData.colorScheme.onSurface,
                           size: 32.r,
                         ),
                       ),
@@ -85,133 +99,125 @@ class _NotificationPageState extends State<NotificationsPage> {
                     const SizedBox(width: 16),
                     Expanded(
                       child: Text(
-                        'NOTIFICATIONS',
+                        'Notifications',
                         style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: 25.sp,
-                          fontWeight: FontWeight.w800,
-                          //letterSpacing: -1,
-                          height: 1.1,
+                          color: themeData.colorScheme.onSurface,
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
               Expanded(
                 child: FutureBuilder<List<NotificationModel>>(
                   future: futureNotifications,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator(color: Colors.white));
-                    } else if (snapshot.hasError) {
-                      return Center(
-                        child: TextButton(
-                          onPressed: () {setState(() {
-                            futureNotifications = fetchNotifications();
-                          });
-                            },
-                          child: Text(
-                            '❌ Failed to load notifications. Click to Retry',
-                            style: GoogleFonts.inter(color: Colors.white70),
-                          ),
-                        ),
-                      );
-                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'No notifications available',
-                          style: GoogleFonts.inter(color: Colors.white70),
-                        ),
-                      );
-                    } else {
-                      return ListView.builder(
-                        padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 16.0),
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) {
-                          final notification = snapshot.data![index];
-                          return Card(
-                              elevation: 0,
-                              margin: const EdgeInsets.symmetric(vertical: 8),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                          child: Container(
-                          decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                          Color(0xFF353F54),
-                          Color(0xFF222834),
-                          ],
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                          color: Colors.white.withOpacity(0.2),
-                          width: 2,
-                          ),
-                          ),
-                          child: ListTile(
-                          contentPadding: const EdgeInsets.all(16),
-                          title: Align(
-                          alignment: Alignment.topCenter,
-                          child: Text(
-                          notification.title,
-                          style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20,
-                          color: Colors.white70,
-                          ),
-                          textAlign: TextAlign.center,
-                          ),
-                          ),
-                          subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                          const SizedBox(height: 10),
-                          Text(
-                          notification.message,
-                          style: GoogleFonts.inter(
-                          fontSize: 16,
-                          color: Colors.white70,
-                          ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                          "Event Date: ${formatEventDate(notification.eventDate)}",
-                          style: GoogleFonts.inter(color: Colors.white70),
-                          ),
-                          Text(
-                          "Timing: ${notification.timing}",
-                          style: GoogleFonts.inter(
-                          fontSize: 14,
-                          color: Colors.white70,
-                          ),
-                          ),
-                          const SizedBox(height: 12),
-                          Align(
-                          alignment: Alignment.bottomRight,
-                          child: Text(
-                          "Posted: ${formateDate(notification.datePosted)}",
-                          style: GoogleFonts.inter(
-                          fontSize: 12,
-                          color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          ),
-                          );
-                        },
+                      return const Center(
+                        child: CircularProgressIndicator(),
                       );
                     }
+
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.error_outline,
+                              size: 48,
+                              color: themeData.colorScheme.error,
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              'Error loading notifications',
+                              style: TextStyle(
+                                color: themeData.colorScheme.onSurface,
+                                fontSize: 16,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: _refreshNotifications,
+                              child: Text(
+                                'Retry',
+                                style: TextStyle(
+                                  color: themeData.colorScheme.primary,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+
+                    if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Center(
+                        child: Text(
+                          'No notifications',
+                          style: TextStyle(
+                            color: themeData.colorScheme.onSurface.withValues(alpha: 179),
+                          ),
+                        ),
+                      );
+                    }
+
+                    return ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        final notification = snapshot.data![index];
+                        return Card(
+                          margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                          color: themeData.colorScheme.surface.withValues(alpha: 26),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(
+                              color: themeData.colorScheme.onSurface.withValues(alpha: 26),
+                              width: 1,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(16.w),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  notification.title,
+                                  style: GoogleFonts.poppins(
+                                    color: themeData.colorScheme.onSurface,
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(height: 8.h),
+                                Text(
+                                  notification.message,
+                                  style: GoogleFonts.inter(
+                                    color: fadedOnSurface,
+                                    fontSize: 14.sp,
+                                  ),
+                                ),
+                                SizedBox(height: 12.h),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      formateDate(notification.datePosted),
+                                      style: GoogleFonts.inter(
+                                        color: fadedOnSurface,
+                                        fontSize: 12.sp,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
                   },
                 ),
               ),

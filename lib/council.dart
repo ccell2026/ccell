@@ -43,8 +43,9 @@ class CouncilDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: const Color(0xFF0E1A23),
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -70,16 +71,16 @@ class CouncilDetailScreen extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.all(4.w),
                         decoration: BoxDecoration(
-                          color: Color(0xFF1C2834),
+                          color: Color(0xFFFFFFFF),
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.black.withOpacity(0.2),
                             width: 2,
                           ),
                         ),
                         child: Icon(
                           Icons.keyboard_arrow_left,
-                          color: Colors.white,
+                          color: Colors.black,
                           size: 30.sp,
                         ),
                       ),
@@ -94,7 +95,7 @@ class CouncilDetailScreen extends StatelessWidget {
               child: Text(
                 description,
                 style: GoogleFonts.inter(
-                  color: Colors.white,
+                  color: theme.colorScheme.onSurface,
                   fontSize: 10.sp,
                 ),
               ),
@@ -110,15 +111,19 @@ class CouncilDetailScreen extends StatelessWidget {
                 return Container(
                   margin: EdgeInsets.only(bottom: 12.h),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF1C2834),
+                    color: theme.colorScheme.primary.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12.r),
+                    border: Border.all(
+                      color: theme.colorScheme.onSurface.withOpacity(0.2),
+                      width: 2,
+                    ),
                   ),
                   child: ListTile(
                     contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
                     title: Text(
                       cordie['name'] ?? '',
                       style: GoogleFonts.inter(
-                        color: Colors.white,
+                        color: theme.colorScheme.onSurface,
                         fontWeight: FontWeight.bold,
                         fontSize: 14.sp,
                       ),
@@ -140,7 +145,10 @@ class CouncilDetailScreen extends StatelessWidget {
                 );
               },
             ),
-            Divider(color: Colors.white38, thickness: 1.h),
+            Divider(
+              color: theme.colorScheme.onSurface.withOpacity(0.38),
+              thickness: 1.h
+            ),
             SizedBox(height: 16.h),
             GalleryCarousel(galleryImages: galleryImages),
             SizedBox(height: 40.h),
@@ -150,7 +158,7 @@ class CouncilDetailScreen extends StatelessWidget {
                 child: Text(
                   "Connect with us",
                   style: GoogleFonts.poppins(
-                    color: Colors.white,
+                    color: theme.colorScheme.onSurface,
                     fontWeight: FontWeight.bold,
                     fontSize: 26.sp,
                   ),
@@ -212,6 +220,7 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Center(
       child: Stack(
         clipBehavior: Clip.none,
@@ -222,86 +231,144 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
             height: 180.h,
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [Color(0xFF353F54), Color(0xFF222834)],
+                colors: [
+                  Color(0xFF353F54),
+                  Color(0xFF222834),
+                ],
               ),
               borderRadius: BorderRadius.circular(20.r),
+              border: Border.all(
+                color: theme.colorScheme.onSurface.withOpacity(0.1),
+              ),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.r),
-              child: Stack(
-                children: [
-                  PageView.builder(
-                    controller: _pageController,
-                    itemCount: widget.galleryImages.length,
-                    itemBuilder: (context, index) => Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        Image.network(
-                          widget.galleryImages[index],
-                          fit: BoxFit.cover,
-                          loadingBuilder: (context, child, progress) {
-                            if (progress == null) return child;
-                            return const Center(
-                              child: CircularProgressIndicator(color: Colors.white),
-                            );
-                          },
-                          errorBuilder: (context, error, stackTrace) =>
-                              const Center(child: Icon(Icons.broken_image, color: Colors.white)),
-                        ),
-                        Container(color: Colors.black.withOpacity(0.35)),
-                      ],
+              child: Container(
+                color: Colors.black,
+                child: Stack(
+                  children: [
+                    PageView.builder(
+                      controller: _pageController,
+                      itemCount: widget.galleryImages.length,
+                      itemBuilder: (context, index) => Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          Image.network(
+                            widget.galleryImages[index],
+                            fit: BoxFit.cover,
+                            loadingBuilder: (context, child, progress) {
+                              if (progress == null) return child;
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  color: theme.colorScheme.surface,
+                                ),
+                              );
+                            },
+                            errorBuilder: (context, error, stackTrace) => Icon(
+                              Icons.broken_image,
+                              color: theme.colorScheme.error,
+                              size: 48,
+                            ),
+                          ),
+                          Container(
+                            color: theme.colorScheme.onPrimary.withOpacity(0.35),
+                          ),
+                        ],
+                      ),
+                      onPageChanged: (index) {
+                        setState(() {
+                          _currentIndex = index;
+                        });
+                      },
                     ),
-                    onPageChanged: (index) {
-                      setState(() {
-                        _currentIndex = index;
-                      });
-                    },
-                  ),
-                  Positioned(
-                    left: 16.w,
-                    bottom: 6.h,
-                    child: Text(
-                      'Gallery',
-                      style: GoogleFonts.poppins(
-                        color: Colors.white.withOpacity(0.5),
-                        fontSize: 26.sp,
-                        fontWeight: FontWeight.bold,
+                    // Image counter
+                    Positioned(
+                      top: 16.h,
+                      right: 16.w,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12.w,
+                          vertical: 6.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.surface.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(16.r),
+                        ),
+                        child: Text(
+                          '${_currentIndex + 1}/${widget.galleryImages.length}',
+                          style: GoogleFonts.inter(
+                            color: theme.colorScheme.onSurface,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-          // Arrows
-          Positioned(
-            left: -15.w,
-            child: _arrowButton(Icons.keyboard_arrow_left_sharp, _goToPrevious),
-          ),
-          Positioned(
-            right: -15.w,
-            child: _arrowButton(Icons.keyboard_arrow_right_sharp, _goToNext),
-          ),
+          // Navigation arrows
+          if (widget.galleryImages.length > 1) ...[
+            Positioned(
+              left: -15.w,
+              child: _arrowButton(
+                Icons.keyboard_arrow_left_sharp,
+                _goToPrevious,
+                theme,
+                _currentIndex > 0,
+              ),
+            ),
+            Positioned(
+              right: -15.w,
+              child: _arrowButton(
+                Icons.keyboard_arrow_right_sharp,
+                _goToNext,
+                theme,
+                _currentIndex < widget.galleryImages.length - 1,
+              ),
+            ),
+          ],
         ],
       ),
     );
   }
 
-  Widget _arrowButton(IconData icon, VoidCallback onTap) {
+  Widget _arrowButton(
+    IconData icon,
+    VoidCallback onTap,
+    ThemeData theme,
+    bool isEnabled,
+  ) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: isEnabled ? onTap : null,
       child: Container(
         height: 33.h,
         width: 33.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
-          gradient: const LinearGradient(
+          gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF8E97FD), Color(0xFF48319D)],
+            colors: isEnabled
+                ? [
+                    theme.colorScheme.primary,
+                    theme.colorScheme.secondary,
+                  ]
+                : [
+                    theme.colorScheme.surface.withOpacity(0.3),
+                    theme.colorScheme.surface.withOpacity(0.1),
+                  ],
           ),
         ),
-        child: Icon(icon, color: Colors.white, size: 23.sp),
+        child: Icon(
+          icon,
+          color: isEnabled
+              ? theme.colorScheme.onPrimary
+              : theme.colorScheme.onSurface.withOpacity(0.3),
+          size: 23.sp,
+        ),
       ),
     );
   }

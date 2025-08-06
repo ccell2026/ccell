@@ -57,3 +57,5 @@ android/app/my-release-key.jks
 .netlify
 
 .vercel
+
+secrets.env

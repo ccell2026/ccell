@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -148,557 +149,198 @@ class _BiometricScreenState extends State<BiometricScreen>
     }
   }
 
+  Widget _buildCard(
+    BuildContext context,
+    int index,
+    String title,
+    String subtitle,
+    VoidCallback onTap,
+  ) {
+    final theme = Theme.of(context);
+    return ScaleTransition(
+      scale: _cardAnimations[index],
+      child: Card(
+        elevation: 8,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+          side: BorderSide(
+            color: theme.colorScheme.onSurface.withOpacity(0.2),
+            width: 2,
+          ),
+        ),
+        color: theme.colorScheme.surface.withOpacity(0.1),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(15),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: GoogleFonts.poppins(
+                    color: theme.colorScheme.onSurface,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  subtitle,
+                  style: GoogleFonts.inter(
+                    color: theme.colorScheme.onSurface.withOpacity(0.8),
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
     final isDesktop = size.width >= 1024;
     final isTablet = size.width >= 768 && size.width < 1024;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0A0E27),
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
-        child: FadeTransition(
-          opacity: _fadeAnimation,
-          child: SlideTransition(
-            position: _slideAnimation,
-            child: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
-              slivers: [
-                _buildModernAppBar(isDesktop, isTablet),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: isDesktop ? 48 : (isTablet ? 32 : 20),
-                      vertical: 24,
-                    ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildWelcomeSection(isDesktop, isTablet),
-                        SizedBox(height: isDesktop ? 48 : 32),
-                        _buildProcessSteps(isDesktop, isTablet),
-                        SizedBox(height: isDesktop ? 32 : 24),
-                        _buildLocationSection(isDesktop, isTablet),
-                        SizedBox(height: isDesktop ? 48 : 32),
-                        _buildProgressSection(isDesktop, isTablet),
-                        SizedBox(height: isDesktop ? 32 : 24),
-                        _buildActionButtons(isDesktop, isTablet),
-                        const SizedBox(height: 40),
+                        Text(
+                          'Biometric Registration',
+                          style: GoogleFonts.poppins(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: theme.colorScheme.onSurface,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Please visit for biometric registration:',
+                          style: GoogleFonts.inter(
+                            fontSize: 16,
+                            color: theme.colorScheme.onSurface.withOpacity(0.8),
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        InkWell(
+                          onTap: () async {
+                            final Uri uri = Uri.parse(biometricMapUrl);
+                            if (await canLaunchUrl(uri)) {
+                              await launchUrl(uri);
+                            }
+                          },
+                          child: Text(
+                            biometricLocation,
+                            style: GoogleFonts.inter(
+                              fontSize: 16,
+                              color: theme.colorScheme.primary,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildModernAppBar(bool isDesktop, bool isTablet) {
-    return SliverAppBar(
-      expandedHeight: isDesktop ? 200 : 160,
-      floating: false,
-      pinned: true,
-      elevation: 0,
-      backgroundColor: const Color(0xFF0A0E27),
-      foregroundColor: Colors.white,
-      flexibleSpace: FlexibleSpaceBar(
-        background: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xFFBE185D),
-                Color(0xFFEC4899),
-                Color(0xFF9D174D),
-              ],
-            ),
-          ),
-          child: Container(
-            padding: EdgeInsets.all(isDesktop ? 48 : 32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: const Icon(
-                        Icons.fingerprint_rounded,
-                        size: 32,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Biometric Registration',
-                            style: GoogleFonts.poppins(
-                              fontSize: isDesktop ? 32 : 24,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                              letterSpacing: -0.5,
-                            ),
+                const SizedBox(height: 32),
+                _buildCard(
+                  context,
+                  0,
+                  'Register Biometrics',
+                  'Visit the location for biometric registration',
+                  () {
+                    HapticFeedback.mediumImpact();
+                    _setDone(true);
+                  },
+                ),
+                const SizedBox(height: 16),
+                _buildCard(
+                  context,
+                  1,
+                  'Know More',
+                  'Learn about biometric registration process',
+                  () {
+                    HapticFeedback.mediumImpact();
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        backgroundColor: theme.colorScheme.surface,
+                        title: Text(
+                          'Biometric Registration',
+                          style: GoogleFonts.poppins(
+                            color: theme.colorScheme.onSurface,
+                            fontWeight: FontWeight.bold,
                           ),
-                          Text(
-                            'Biometric Registration',
-                            style: GoogleFonts.inter(
-                              fontSize: isDesktop ? 16 : 14,
-                              color: Colors.white.withOpacity(0.8),
-                              fontWeight: FontWeight.w400,
+                        ),
+                        content: Text(
+                          'Biometric registration is mandatory for all students. Please visit the designated location during working hours.',
+                          style: GoogleFonts.inter(
+                            color: theme.colorScheme.onSurface.withOpacity(0.8),
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text(
+                              'OK',
+                              style: TextStyle(color: theme.colorScheme.primary),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildWelcomeSection(bool isDesktop, bool isTablet) {
-    return Container(
-      padding: EdgeInsets.all(isDesktop ? 32 : 24),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            const Color(0xFF1E293B).withOpacity(0.8),
-            const Color(0xFF334155).withOpacity(0.6),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.1),
-          width: 1,
-        ),
-      ),
-      child: Row(
-        children: [
-          Icon(
-            Icons.info_outline_rounded,
-            size: isDesktop ? 32 : 24,
-            color: const Color(0xFFEC4899),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Biometric Data Registration',
-                  style: GoogleFonts.poppins(
-                    fontSize: isDesktop ? 20 : 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Complete biometric data entry for your student ID card and campus access systems.',
-                  style: GoogleFonts.inter(
-                    fontSize: isDesktop ? 14 : 12,
-                    color: Colors.white.withOpacity(0.7),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildProcessSteps(bool isDesktop, bool isTablet) {
-    final steps = [
-      StepData(
-        title: 'Fingerprint Scanning',
-        description: 'Multiple fingerprints for ID verification',
-        icon: Icons.fingerprint_rounded,
-        color: const Color(0xFF3B82F6),
-      ),
-      StepData(
-        title: 'Photo Capture',
-        description: 'High-quality photo for ID card',
-        icon: Icons.camera_alt_rounded,
-        color: const Color(0xFF10B981),
-      ),
-      StepData(
-        title: 'Data Verification',
-        description: 'Confirm personal information',
-        icon: Icons.verified_user_rounded,
-        color: const Color(0xFFF59E0B),
-      ),
-    ];
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Registration Process',
-          style: GoogleFonts.poppins(
-            fontSize: isDesktop ? 24 : 20,
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
-          ),
-        ),
-        const SizedBox(height: 16),
-        ...steps.asMap().entries.map((entry) {
-          return AnimatedBuilder(
-            animation: _cardAnimations[entry.key],
-            builder: (context, child) {
-              return Transform.scale(
-                scale: 0.8 + (0.2 * _cardAnimations[entry.key].value),
-                child: Opacity(
-                  opacity: _cardAnimations[entry.key].value,
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    child: _buildStepCard(entry.value, entry.key + 1, isDesktop, isTablet),
-                  ),
-                ),
-              );
-            },
-          );
-        }).toList(),
-      ],
-    );
-  }
-
-  Widget _buildStepCard(StepData step, int stepNumber, bool isDesktop, bool isTablet) {
-    return Container(
-      padding: EdgeInsets.all(isDesktop ? 20 : 16),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            const Color(0xFF1E293B).withOpacity(0.8),
-            const Color(0xFF334155).withOpacity(0.6),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: step.color.withOpacity(0.3),
-          width: 1,
-        ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: step.color.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(24),
-            ),
-            child: Stack(
-              children: [
-                Center(
-                  child: Icon(
-                    step.icon,
-                    size: isDesktop ? 24 : 20,
-                    color: step.color,
-                  ),
-                ),
-                Positioned(
-                  top: 2,
-                  right: 2,
-                  child: Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      color: step.color,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '$stepNumber',
-                        style: GoogleFonts.inter(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                const SizedBox(height: 16),
+                _buildCard(
+                  context,
+                  2,
+                  'Continue',
+                  'Proceed to next step',
+                  () {
+                    if (!isDone) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Please complete biometric registration first',
+                            style: TextStyle(color: theme.colorScheme.onError),
+                          ),
+                          backgroundColor: theme.colorScheme.error,
                         ),
+                      );
+                      return;
+                    }
+                    HapticFeedback.mediumImpact();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CredentialCollectionScreen(),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ],
             ),
           ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  step.title,
-                  style: GoogleFonts.poppins(
-                    fontSize: isDesktop ? 16 : 14,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  step.description,
-                  style: GoogleFonts.inter(
-                    fontSize: isDesktop ? 14 : 12,
-                    color: Colors.white.withOpacity(0.7),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildLocationSection(bool isDesktop, bool isTablet) {
-    return Container(
-      padding: EdgeInsets.all(isDesktop ? 24 : 20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            const Color(0xFF1E3A8A).withOpacity(0.8),
-            const Color(0xFF3B82F6).withOpacity(0.6),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: const Color(0xFF3B82F6).withOpacity(0.3),
-          width: 1.5,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF3B82F6).withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Icon(
-                  Icons.location_on_rounded,
-                  size: isDesktop ? 32 : 28,
-                  color: const Color(0xFF3B82F6),
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'LH9',
-                      style: GoogleFonts.poppins(
-                        fontSize: isDesktop ? 20 : 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      'Biometric registration center',
-                      style: GoogleFonts.inter(
-                        fontSize: isDesktop ? 14 : 12,
-                        color: Colors.white.withOpacity(0.8),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'Visit LH9 for biometric data entry and photo capture for your student ID card.',
-            style: GoogleFonts.inter(
-              fontSize: isDesktop ? 16 : 14,
-              color: Colors.white.withOpacity(0.9),
-              height: 1.5,
-            ),
-          ),
-          const SizedBox(height: 20),
-          SizedBox(
-            width: double.infinity,
-            child: _buildActionButton(
-              icon: Icons.directions_rounded,
-              label: 'Get Directions to LH9',
-              color: const Color(0xFF3B82F6),
-              onTap: () => _launchMapUrl(context),
-              isDesktop: isDesktop,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildProgressSection(bool isDesktop, bool isTablet) {
-    return Container(
-      padding: EdgeInsets.all(isDesktop ? 24 : 20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            (isDone ? const Color(0xFF10B981) : const Color(0xFFF59E0B)).withOpacity(0.1),
-            (isDone ? const Color(0xFF059669) : const Color(0xFFD97706)).withOpacity(0.05),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: (isDone ? const Color(0xFF10B981) : const Color(0xFFF59E0B)).withOpacity(0.3),
-        ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: (isDone ? const Color(0xFF10B981) : const Color(0xFFF59E0B)).withOpacity(0.2),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(
-              isDone ? Icons.check_circle_rounded : Icons.schedule_rounded,
-              size: isDesktop ? 28 : 24,
-              color: isDone ? const Color(0xFF10B981) : const Color(0xFFF59E0B),
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  isDone ? 'Registration Complete' : 'Registration Pending',
-                  style: GoogleFonts.poppins(
-                    fontSize: isDesktop ? 18 : 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  isDone
-                      ? 'Your biometric data has been registered successfully!'
-                      : 'Visit LH9 to complete biometric registration',
-                  style: GoogleFonts.inter(
-                    fontSize: isDesktop ? 14 : 12,
-                    color: Colors.white.withOpacity(0.7),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Switch(
-            value: isDone,
-            onChanged: _setDone,
-            activeColor: const Color(0xFF10B981),
-            thumbColor: MaterialStateProperty.all(Colors.white),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildActionButtons(bool isDesktop, bool isTablet) {
-    return Column(
-      children: [
-        SizedBox(
-          width: double.infinity,
-          child: _buildActionButton(
-            icon: Icons.arrow_forward_rounded,
-            label: 'Continue to Credential Collection',
-            color: const Color(0xFFEC4899),
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const CredentialCollectionScreen()),
-              );
-            },
-            isDesktop: isDesktop,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildActionButton({
-    required IconData icon,
-    required String label,
-    required Color color,
-    required VoidCallback onTap,
-    required bool isDesktop,
-  }) {
-    return GestureDetector(
-      onTap: () {
-        HapticFeedback.lightImpact();
-        onTap();
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: isDesktop ? 24 : 20,
-          vertical: isDesktop ? 16 : 14,
-        ),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              color,
-              color.withOpacity(0.8),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: color.withOpacity(0.3),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: isDesktop ? 20 : 18,
-              color: Colors.white,
-            ),
-            const SizedBox(width: 12),
-            Text(
-              label,
-              style: GoogleFonts.inter(
-                fontSize: isDesktop ? 16 : 14,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-              ),
-            ),
-          ],
         ),
       ),
     );

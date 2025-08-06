@@ -9,8 +9,9 @@ class TechnologyCouncil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: const Color(0xFF0E1A23),
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -39,16 +40,16 @@ class TechnologyCouncil extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.all(4.w),
                           decoration: BoxDecoration(
-                            color: Color(0xFF1C2834),
+                            color: theme.colorScheme.surface,
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: Colors.white.withOpacity(0.2),
+                              color: theme.colorScheme.onSurface.withOpacity(0.2),
                               width: 2,
                             ),
                           ),
                           child: Icon(
                             Icons.keyboard_arrow_left,
-                            color: Colors.white,
+                            color: theme.colorScheme.onSurface,
                             size: 30.sp,
                           ),
                         ),
@@ -62,7 +63,10 @@ class TechnologyCouncil extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 10.h),
                 child: Text(
                   "The LNMIIT Student Science and Technology Council is meticulously designed to foster and promote a vibrant culture of scientific inquiry, technological innovation, and hands-on technical skill development among the student community. It acts as a central hub, orchestrating and amplifying the efforts of various student technical clubs and activities. Beyond mere coordination, the Council actively cultivates an environment ripe for intellectual curiosity and practical application, empowering students to translate theoretical knowledge into tangible solutions.",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 9.sp),
+                  style: GoogleFonts.inter(
+                    color: theme.colorScheme.onSurface,
+                    fontSize: 9.sp
+                  ),
                 ),
               ),
               SizedBox(height: 20.h),
@@ -333,131 +337,133 @@ class TechnologyCouncil extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget squareCard(
-  String logoUrl,
-  String label,
-  BuildContext context,
-  String description,
-  List<String> galleryImages,
-  List<Map<String, String>> cordies,
-  String instaUrl,
-) {
-  return Material(
-    elevation: 6,
-    borderRadius: BorderRadius.circular(16.r),
-    child: InkWell(
+  Widget squareCard(
+    String logoUrl,
+    String label,
+    BuildContext context,
+    String description,
+    List<String> galleryImages,
+    List<Map<String, String>> cordies,
+    String instaUrl,
+  ) {
+    final theme = Theme.of(context);
+    return Material(
+      elevation: 6,
       borderRadius: BorderRadius.circular(16.r),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => CouncilDetailScreen(
-              imageUrl: logoUrl,
-              galleryImages: galleryImages,
-              cordies: cordies,
-              instaUrl: instaUrl,
-              description: description,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16.r),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CouncilDetailScreen(
+                imageUrl: logoUrl,
+                galleryImages: galleryImages,
+                cordies: cordies,
+                instaUrl: instaUrl,
+                description: description,
+              ),
+            ),
+          );
+        },
+        child: Container(
+          width: 100.w,
+          height: 100.h,
+          padding: EdgeInsets.all(8.r),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.onPrimary,
+            borderRadius: BorderRadius.circular(12.r),
+            border: Border.all(color: theme.colorScheme.onSurface.withOpacity(0.2), width: 2.w),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage(logoUrl),
+                radius: 40.r,
+                backgroundColor: theme.colorScheme.onPrimary,
+              ),
+              SizedBox(height: 8.h),
+              Text(
+                label,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                  color: theme.colorScheme.onSurface,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGSecTile(
+    String name,
+    String post,
+    String phoneUrl,
+    String mailUrl,
+  ) {
+    return Builder(
+      builder: (context) {
+        final theme = Theme.of(context);
+        return Container(
+          margin: EdgeInsets.only(bottom: 12.h),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(12.r),
+            border: Border.all(color: theme.colorScheme.onSurface.withOpacity(0.2), width: 2.w),
+          ),
+          child: ListTile(
+            contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
+            title: Text(
+              name,
+              style: GoogleFonts.inter(
+                color: theme.colorScheme.onSurface,
+                fontWeight: FontWeight.bold,
+                fontSize: 14.sp,
+              ),
+            ),
+            subtitle: Text(
+              post,
+              style: GoogleFonts.inter(
+                color: theme.colorScheme.onSurface.withOpacity(0.7),
+                fontSize: 10.sp,
+              ),
+            ),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.phone, color: theme.colorScheme.secondary, size: 20.sp),
+                  onPressed: () => _launchPhone(phoneUrl),
+                ),
+                IconButton(
+                  icon: Icon(Icons.email, color: theme.colorScheme.tertiary, size: 20.sp),
+                  onPressed: () => _launchEmail(mailUrl),
+                ),
+              ],
             ),
           ),
         );
-      },
-      child: Container(
-        width: 100.w,
-        height: 100.h,
-        padding: EdgeInsets.all(8.r),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF353F54), Color(0xFF222834)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(color: Colors.white.withOpacity(0.2), width: 2.w),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              backgroundImage: AssetImage(logoUrl),
-              radius: 40.r,
-              backgroundColor: Colors.transparent,
-            ),
-            SizedBox(height: 8.h),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
-Widget _buildGSecTile(
-  String name,
-  String post,
-  String phoneUrl,
-  String mailUrl,
-) {
-  return Container(
-    margin: EdgeInsets.only(bottom: 12.h),
-    decoration: BoxDecoration(
-      color: const Color(0xFF1C2834),
-      borderRadius: BorderRadius.circular(12.r),
-      border: Border.all(color: Colors.white.withOpacity(0.2), width: 2.w),
-    ),
-    child: ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
-      title: Text(
-        name,
-        style: GoogleFonts.inter(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 14.sp,
-        ),
-      ),
-      subtitle: Text(
-        post,
-        style: GoogleFonts.inter(
-          color: Color.fromARGB(255, 192, 190, 190),
-          fontSize: 10.sp,
-        ),
-      ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: Icon(Icons.phone, color: Colors.greenAccent, size: 20.sp),
-            onPressed: () => _launchPhone(phoneUrl),
-          ),
-          IconButton(
-            icon: Icon(Icons.email, color: Colors.lightBlueAccent, size: 20.sp),
-            onPressed: () => _launchEmail(mailUrl),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-void _launchPhone(String phone) async {
-  final Uri uri = Uri.parse('tel:$phone');
-  if (await canLaunchUrl(uri)) {
-    await launchUrl(uri);
+      }
+    );
   }
-}
 
-void _launchEmail(String email) async {
-  final Uri uri = Uri(scheme: 'mailto', path: email);
-  if (await canLaunchUrl(uri)) {
-    await launchUrl(uri);
+  void _launchPhone(String phone) async {
+    final Uri uri = Uri.parse('tel:$phone');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+  void _launchEmail(String email) async {
+    final Uri uri = Uri(scheme: 'mailto', path: email);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
   }
 }

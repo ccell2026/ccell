@@ -40,17 +40,38 @@ class PDFViewerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text(title),
+        backgroundColor: theme.colorScheme.surface,
+        title: Text(
+          title,
+          style: TextStyle(
+            color: theme.colorScheme.onSurface,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        iconTheme: IconThemeData(
+          color: theme.colorScheme.onSurface,
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.download),
+            icon: Icon(
+              Icons.download,
+              color: theme.colorScheme.primary,
+            ),
             onPressed: () => _downloadFile(context),
           ),
         ],
       ),
-      body: SfPdfViewer.network(pdfUrl),
+      body: SfPdfViewer.network(
+        pdfUrl,
+        canShowPaginationDialog: true,
+        canShowScrollHead: true,
+        canShowScrollStatus: true,
+        pageLayoutMode: PdfPageLayoutMode.continuous,
+      ),
     );
   }
 }

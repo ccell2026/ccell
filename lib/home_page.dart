@@ -130,8 +130,9 @@ class _HomeDashboardState extends State<HomeDashboard>
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Theme.of(context);
     return Scaffold(
-      backgroundColor: const Color(0xFF001219),
+      backgroundColor: themeData.scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -154,7 +155,7 @@ class _HomeDashboardState extends State<HomeDashboard>
   }
 
   Widget _buildWelcomeSection() {
-
+    final theme = Theme.of(context);
     final user = FirebaseAuth.instance.currentUser;
     final photoUrl = user?.photoURL ?? '';
 
@@ -180,21 +181,21 @@ class _HomeDashboardState extends State<HomeDashboard>
                 width: double.infinity,
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
+                  gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                      Color(0xFF353F54),
-                      Color(0xFF222834),
+                        theme.colorScheme.surface,
+                        theme.colorScheme.background,
                       ]
                   ),
                     borderRadius: BorderRadius.circular(20.r),
                     boxShadow: [
                     BoxShadow(
-                    color: const Color(0xFF6366F1).withOpacity(0.2),
-                blurRadius: 20,
-                offset: const Offset(0, 8),
-        )],
+                      color: theme.colorScheme.primary.withOpacity(0.2),
+                      blurRadius: 20,
+                      offset: const Offset(0, 8),
+                    )],
               ),
               child: Row(
                 children: [
@@ -236,7 +237,7 @@ class _HomeDashboardState extends State<HomeDashboard>
                         'Welcome back,',
                         style: GoogleFonts.inter(
                           fontSize: 13.sp,
-                          color: Colors.white.withOpacity(0.9),
+                          color: theme.colorScheme.onSurface.withOpacity(0.9),
                           fontWeight: FontWeight.w400,
                           letterSpacing: 0.5
                         ),
@@ -249,7 +250,7 @@ class _HomeDashboardState extends State<HomeDashboard>
                           fontWeight: FontWeight.w700,
                           letterSpacing: -0.3,
                           height: 1.2,
-                          color: Colors.white,
+                          color: theme.colorScheme.onSurface,
                         ),
                       ),
                       SizedBox(height: 6.h),
@@ -257,7 +258,7 @@ class _HomeDashboardState extends State<HomeDashboard>
                         'Your gateway to campus life',
                         style: GoogleFonts.inter(
                           fontSize: 12.sp,
-                          color: Colors.white.withOpacity(0.8),
+                          color: theme.colorScheme.onSurface.withOpacity(0.8),
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -408,88 +409,72 @@ class _HomeDashboardState extends State<HomeDashboard>
   }
 
   Widget _buildStatCard(_StatData stat) {
+    final theme = Theme.of(context);
     return GestureDetector(
-        onTap: () {
-      HapticFeedback.lightImpact();
-      stat.onTap();
-    },
-    child: Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-      color: Colors.white.withOpacity(0.05),
-      borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: stat.color.withOpacity(0.2))),
-      child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-    Container(
-    padding: const EdgeInsets.all(10),
-    decoration: BoxDecoration(
-    color: stat.color.withOpacity(0.1),
-    borderRadius: BorderRadius.circular(10),
-    ),
-    child: Icon(stat.icon, color: stat.color),
-    ),
-    // Container(
-    // padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-    // decoration: BoxDecoration(
-    // color: const Color(0xFF10B981).withOpacity(0.1),
-    // borderRadius: BorderRadius.circular(12),
-    // ),
-    // child: Row(
-    // mainAxisSize: MainAxisSize.min,
-    // children: [
-    // const Icon(Icons.trending_up_rounded, size: 12, color: Color(0xFF10B981)),
-    // const SizedBox(width: 4),
-    // Text(
-    // '+3',
-    // style: GoogleFonts.inter(
-    // fontSize: 10,
-    // fontWeight: FontWeight.w600,
-    // color: const Color(0xFF10B981),
-    // ),
-    // ),
-    // ],
-    // ),
-    // ),
-    ],
-    ),
-    SizedBox(height: 25.h),
-    Text(
-    stat.value,
-    style: GoogleFonts.poppins(
-    fontSize: 24,
-    fontWeight: FontWeight.w800,
-    color: stat.color,
-    ),
-    ),
-    SizedBox(height: 3.h),
-    Text(
-    stat.title,
-    style: GoogleFonts.poppins(
-    fontSize: 14,
-    fontWeight: FontWeight.w600,
-    color: Colors.white,
-    ),
-    ),
-    SizedBox(height: 2.h),
-    Text(
-    stat.subtitle,
-    style: GoogleFonts.inter(
-    fontSize: 10,
-    color: Colors.white.withOpacity(0.7),
-    ),
-    ),
-    ],
-    ),
-    ),
+      onTap: () {
+        HapticFeedback.lightImpact();
+        stat.onTap();
+      },
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface.withOpacity(0.05),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: stat.color.withOpacity(0.2),
+            width: 2.5, // Increased border thickness from default 1.0
+          )
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: stat.color.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Icon(stat.icon, color: stat.color),
+                ),
+              ],
+            ),
+            SizedBox(height: 25.h),
+            Text(
+              stat.value,
+              style: GoogleFonts.poppins(
+                fontSize: 24,
+                fontWeight: FontWeight.w800,
+                color: stat.color,
+              ),
+            ),
+            SizedBox(height: 3.h),
+            Text(
+              stat.title,
+              style: GoogleFonts.poppins(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: theme.colorScheme.onSurface,
+              ),
+            ),
+            SizedBox(height: 2.h),
+            Text(
+              stat.subtitle,
+              style: GoogleFonts.inter(
+                fontSize: 10,
+                color: theme.colorScheme.onSurface.withOpacity(0.7),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   Widget _buildServicesGrid() {
+    final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -498,7 +483,7 @@ class _HomeDashboardState extends State<HomeDashboard>
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.w600,
-            color: Colors.white,
+            color: theme.colorScheme.onSurface,
           ),
         ),
         const SizedBox(height: 16),
@@ -572,6 +557,7 @@ class _FancyButtonState extends State<FancyButton> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
@@ -579,19 +565,10 @@ class _FancyButtonState extends State<FancyButton> {
         onTapDown: (_) => setState(() => _isPressed = true),
         onTapUp: (_) => setState(() => _isPressed = false),
         onTapCancel: () => setState(() => _isPressed = false),
-        // onTap: () async {
-        //   HapticFeedback.lightImpact();
-        //   if (widget.route != null && widget.route!.isNotEmpty) {
-        //     Navigator.pushNamed(context, '/${widget.route}');
-        //   } else if (widget.url != null && widget.url!.isNotEmpty) {
-        //     await _launchUrl(widget.url!);
-        //   }
-        // },
         onTap: () async {
           HapticFeedback.lightImpact();
           if (widget.route != null && widget.route!.isNotEmpty) {
             if (widget.route == 'coming_soon') {
-              // Navigate to coming soon page with feature name
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -615,20 +592,20 @@ class _FancyButtonState extends State<FancyButton> {
             borderRadius: BorderRadius.circular(24),
             gradient: _isHovered
                 ? LinearGradient(
-              colors: [
-                Colors.blueAccent.withOpacity(0.3),
-                Colors.purpleAccent.withOpacity(0.3)
-              ],
-            )
+                    colors: [
+                      theme.colorScheme.primary.withOpacity(0.3),
+                      theme.colorScheme.secondary.withOpacity(0.3)
+                    ],
+                  )
                 : null,
             boxShadow: _isHovered
                 ? [
-              BoxShadow(
-                color: Colors.blueAccent.withOpacity(0.4),
-                blurRadius: 20,
-                offset: const Offset(0, 4),
-              )
-            ]
+                    BoxShadow(
+                      color: theme.colorScheme.primary.withOpacity(0.4),
+                      blurRadius: 20,
+                      offset: const Offset(0, 4),
+                    )
+                  ]
                 : [],
           ),
           child: ClipRRect(
@@ -637,23 +614,25 @@ class _FancyButtonState extends State<FancyButton> {
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.05),
+                  color: theme.colorScheme.surface.withOpacity(0.05),
                   borderRadius: BorderRadius.circular(24),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.2),
+                    color: theme.colorScheme.onSurface.withOpacity(0.2),
                   ),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     widget.icon != null
-                        ? Icon(widget.icon, size: 40, color: Colors.white)
+                        ? Icon(widget.icon,
+                            size: 40,
+                            color: theme.colorScheme.onSurface)
                         : Image.asset(
-                      'assets/images/${widget.imageName}',
-                      width: 60,
-                      height: 60,
-                      fit: BoxFit.contain,
-                    ),
+                            'assets/images/${widget.imageName}',
+                            width: 60,
+                            height: 60,
+                            fit: BoxFit.contain,
+                          ),
                     const SizedBox(height: 8),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -662,7 +641,7 @@ class _FancyButtonState extends State<FancyButton> {
                         textAlign: TextAlign.center,
                         style: GoogleFonts.poppins(
                           fontSize: 14,
-                          color: Colors.white,
+                          color: theme.colorScheme.onSurface,
                           fontWeight: FontWeight.w600,
                         ),
                       ),

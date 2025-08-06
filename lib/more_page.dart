@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:login_page/AboutCCellPage.dart';
 import 'package:login_page/notifications_api/post_screen.dart';
@@ -70,54 +71,122 @@ class _MorePageState extends State<MorePage> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return _isAuthorized
-      ?Scaffold(
-      backgroundColor: const Color(0xFF001219),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (_isLoading)
-              const CircularProgressIndicator()
-            else if (_isAuthorized)
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const NotificationInputScreen()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                ),
-                child: const Text(
-                  "Post a Notification",
-                  style: TextStyle(fontSize: 16),
+    final theme = Theme.of(context);
+    return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'More',
+                style: GoogleFonts.poppins(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: theme.colorScheme.onSurface,
                 ),
               ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AboutCCellPage()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              ),
-              child: const Text(
-                'About C-Cell Page',
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-          ],
+              const SizedBox(height: 24),
+              if (_isLoading)
+                Center(
+                  child: CircularProgressIndicator(
+                    color: theme.colorScheme.primary,
+                  ),
+                )
+              else ...[
+                if (_isAuthorized)
+                  Container(
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.surface.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: theme.colorScheme.primary.withOpacity(0.2),
+                      ),
+                    ),
+                    child: ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NotificationInputScreen(),
+                          ),
+                        );
+                      },
+                      leading: Icon(
+                        Icons.notifications_active,
+                        color: theme.colorScheme.primary,
+                      ),
+                      title: Text(
+                        'Post a Notification',
+                        style: GoogleFonts.poppins(
+                          color: theme.colorScheme.onSurface,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      subtitle: Text(
+                        'Create and send notifications',
+                        style: GoogleFonts.inter(
+                          color: theme.colorScheme.onSurface.withOpacity(0.7),
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: theme.colorScheme.onSurface.withOpacity(0.5),
+                        size: 16,
+                      ),
+                    ),
+                  ),
+                const SizedBox(height: 16),
+                Container(
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.surface.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: theme.colorScheme.onSurface.withOpacity(0.1),
+                    ),
+                  ),
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AboutCCellPage(),
+                        ),
+                      );
+                    },
+                    leading: Icon(
+                      Icons.info_outline,
+                      color: theme.colorScheme.onSurface,
+                    ),
+                    title: Text(
+                      'About C-Cell',
+                      style: GoogleFonts.poppins(
+                        color: theme.colorScheme.onSurface,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Learn more about the Counselling Cell',
+                      style: GoogleFonts.inter(
+                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      color: theme.colorScheme.onSurface.withOpacity(0.5),
+                      size: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
         ),
       ),
-    )
-        :AboutCCellPage();
+    );
   }
 }

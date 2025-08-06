@@ -137,8 +137,9 @@ class StudentEventScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: const Color(0xFF0E1A23),
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -187,7 +188,10 @@ class StudentEventScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: Text(
                 description,
-                style: GoogleFonts.inter(color: Colors.white, fontSize: 9.sp),
+                style: GoogleFonts.inter(
+                  color: theme.colorScheme.onSurface,
+                  fontSize: 9.sp
+                ),
               ),
             ),
             SizedBox(height: 20.h),
@@ -201,26 +205,27 @@ class StudentEventScreen extends StatelessWidget {
                 return Container(
                   margin: EdgeInsets.only(bottom: 12.h),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF1C2834),
+                    color: theme.colorScheme.surface.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(color: Colors.white.withOpacity(0.2), width: 2)
+                    border: Border.all(
+                      color: theme.colorScheme.onSurface.withOpacity(0.2),
+                      width: 2,
+                    ),
                   ),
                   child: ListTile(
                     contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
                     title: Text(
                       cordie['name'] ?? '',
                       style: GoogleFonts.inter(
-                        color: Colors.white,
+                        color: theme.colorScheme.onSurface,
                         fontWeight: FontWeight.bold,
                         fontSize: 14.sp,
                       ),
                     ),
                     subtitle: Text(
-                      label.trim().toLowerCase() == "tedx lnmiit"
-                          ? "Organiser"
-                          : "Fest Head",
+                      label.trim().toLowerCase() == "tedx lnmiit" ? "Organiser" : "Fest Head",
                       style: GoogleFonts.inter(
-                        color: const Color.fromARGB(255, 192, 190, 190),
+                        color: theme.colorScheme.onSurface.withOpacity(0.7),
                         fontSize: 10.sp,
                       ),
                     ),
@@ -266,7 +271,7 @@ class StudentEventScreen extends StatelessWidget {
                     child: Text(
                       "Connect with us",
                       style: GoogleFonts.poppins(
-                        color: Colors.white,
+                        color: theme.colorScheme.onSurface,
                         fontWeight: FontWeight.bold,
                         fontSize: 20.sp,
                       ),

@@ -11,6 +11,7 @@ import 'package:login_page/home_page.dart';
 import 'package:login_page/notifications_screen.dart';
 import 'package:login_page/profile_page.dart';
 import 'package:login_page/services/notification_service.dart';
+import 'package:login_page/theme_provider.dart';
 import 'package:login_page/welcome_screen.dart';
 import 'package:login_page/hostel_registration.dart';
 import 'package:login_page/loading_screen.dart';
@@ -48,7 +49,7 @@ Future<void> main() async {
 
   final notificationRepo = NotificationRepository(
     client: http.Client(),
-    baseUrl: 'https://ccell-notification-api.onrender.com/api', // modified by cursor - updated to correct base URL
+    baseUrl: 'https://ccell-notification-api.onrender.com/api',
   );
 
   // Configure notifications differently for web vs mobile using repository
@@ -59,8 +60,11 @@ Future<void> main() async {
   }
 
   runApp(
-    Provider(
-      create: (context) => notificationRepo,
+    MultiProvider(
+      providers: [
+        Provider(create: (context) => notificationRepo),
+        ChangeNotifierProvider(create: (_) => ThemeNotifier()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -191,6 +195,7 @@ class MainScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 400),
@@ -203,7 +208,7 @@ class MainScaffold extends StatelessWidget {
           borderRadius: BorderRadius.circular(90),
         ),
         onTap: onItemTapped,
-        backgroundColor: Colors.black,
+        backgroundColor: theme.colorScheme.onSurface,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey.shade600,
         duration: const Duration(milliseconds: 400),
@@ -217,17 +222,17 @@ class MainScaffold extends StatelessWidget {
           SalomonBottomBarItem(
             icon: _buildGlowingIcon(Icons.sports, currentIndex == 1),
             title: const Text("Gymkhana"),
-            selectedColor: Colors.cyanAccent,
+            selectedColor:  Color(0xFF3B82F6),
           ),
           SalomonBottomBarItem(
             icon: _buildGlowingIcon(Icons.notifications, currentIndex == 2),
             title: const Text("Notifications"),
-            selectedColor: Colors.lightGreenAccent,
+            selectedColor: Color(0xFFF59E0B),
           ),
           SalomonBottomBarItem(
             icon: _buildGlowingIcon(Icons.account_balance, currentIndex == 3),
             title: const Text("LNMIIT"),
-            selectedColor: Colors.redAccent,
+            selectedColor: Color(0xFF10B981),
           ),
           SalomonBottomBarItem(
             icon: _buildGlowingIcon(Icons.more_horiz, currentIndex == 4),
@@ -266,6 +271,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -273,9 +280,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'LNMIIT C-Cell App',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          textTheme: GoogleFonts.interTextTheme(),
-        ),
+        theme: themeNotifier.themeData,
         routes: {
           '/profile': (context) => const ProfilePage(),
           '/home': (context) => const MainNavigationWrapper(),
@@ -403,8 +408,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = <Widget>[
-HomePage(userName: FirebaseAuth.instance.currentUser!.displayName!),
-    const GymkhanaPage(), 
+    HomePage(userName: FirebaseAuth.instance.currentUser!.displayName!),
+    const GymkhanaPage(),
     const NotificationsPage(),
     const LNMPage(),
     MorePage()

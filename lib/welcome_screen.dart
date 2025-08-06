@@ -8,8 +8,9 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: const Color(0xFF001219), // Background color #001219
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -17,83 +18,98 @@ class WelcomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-              // Placeholder for an illustration
-              Image.asset(
-                'assets/welcome_illustration.png', 
-                errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.school, size: 200, color: Colors.white),
-                height: 200,
-                width: 200,
-              ),
-              const SizedBox(height: 40),
-              const Text(
-                'Welcome to LNM Institute of Information Technology!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                // Illustration
+                Image.asset(
+                  'assets/welcome_illustration.png',
+                  errorBuilder: (context, error, stackTrace) => Icon(
+                    Icons.school,
+                    size: 200,
+                    color: theme.colorScheme.onSurface,
+                  ),
+                  height: 200,
+                  width: 200,
                 ),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                "Are you a existing student or a guest/new student ?",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white70,
-                ),
-              ),
-              const SizedBox(height: 40),
-              // Guest User Button (Starts onboarding flow)
-              ElevatedButton(
-                onPressed: () {
-                  // Navigate to HostelRegistrationScreen for guest users/new students
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ChecklistScreen()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50), // Full width button
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0), // Rounded corners
+                const SizedBox(height: 40),
+                Text(
+                  'Welcome to LNM Institute of Information Technology!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: theme.colorScheme.onSurface,
                   ),
                 ),
-                child: const Text(
-                  'Guest User / New Student',
-                  style: TextStyle(fontSize: 18, color: Color(0xFF001219)),
-                ),
-              ),
-              const SizedBox(height: 20),
-              // Student Login Button (Navigates to LoginPage)
-              ElevatedButton(
-                onPressed: () {
-                  // Navigate to the LoginPage for existing students to sign in
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50), // Full width button
-                  backgroundColor: const Color(0xFF48CAE4), // A contrasting color
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0), // Rounded corners
+                const SizedBox(height: 20),
+                Text(
+                  "Are you a existing student or a guest/new student?",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: theme.colorScheme.onSurface.withOpacity(0.7),
                   ),
                 ),
-                child: const Text(
-                  'Existing Student Login',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                const SizedBox(height: 40),
+                // Guest User Button
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChecklistScreen(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 50),
+                    backgroundColor: theme.colorScheme.surface,
+                    foregroundColor: theme.colorScheme.onSurface,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(
+                        color: theme.colorScheme.onSurface.withOpacity(0.1),
+                      ),
+                    ),
+                    elevation: 4,
+                  ),
+                  child: Text(
+                    'Guest User / New Student',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: theme.colorScheme.onSurface,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+                // Student Login Button
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 50),
+                    backgroundColor: theme.colorScheme.primary,
+                    foregroundColor: theme.colorScheme.onPrimary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    elevation: 4,
+                  ),
+                  child: Text(
+                    'Existing Student Login',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: theme.colorScheme.onPrimary,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-    ),
     );
   }
 }

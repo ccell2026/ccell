@@ -22,7 +22,7 @@ Future<void> initializeFCM(BuildContext context, String userId) async {
     
     // Subscribe to topics using repository
     await notificationRepo.subscribeToTopic('all-users');
-    
+
     if (kDebugMode) {
       print('✅ FCM initialized for user: $userId');
     }

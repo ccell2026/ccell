@@ -14,8 +14,9 @@ class AboutCCellPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: const Color(0xFF0E1A23),
+      backgroundColor: theme.colorScheme.background,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -37,8 +38,8 @@ class AboutCCellPage extends StatelessWidget {
                   bottom: -40,
                   child: CircleAvatar(
                     radius: 50,
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage(
+                    backgroundColor: theme.colorScheme.surface,
+                    backgroundImage: const AssetImage(
                       'assets/images/ccell_logo_c.png',
                     ),
                   ),
@@ -49,11 +50,11 @@ class AboutCCellPage extends StatelessWidget {
             const SizedBox(height: 50),
 
             Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 "The LNM Institute of Information Technology",
                 style: GoogleFonts.poppins(
-                  color: Colors.white,
+                  color: theme.colorScheme.onBackground,
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
@@ -63,10 +64,12 @@ class AboutCCellPage extends StatelessWidget {
             const SizedBox(height: 10),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 "The Counselling and Guidance Cell at LNMIIT fosters mental well-being and provides support through peer mentorship, professional guidance, and proactive outreach initiatives.",
-                style: GoogleFonts.inter(color: Colors.white),
+                style: GoogleFonts.inter(
+                  color: theme.colorScheme.onBackground,
+                ),
               ),
             ),
 
@@ -197,12 +200,13 @@ class NewSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
       children: [
         Text(
           title,
           style: GoogleFonts.poppins(
-            color: Colors.white,
+            color: theme.colorScheme.onBackground,
             fontSize: 24,
             fontWeight: FontWeight.w500,
           ),
@@ -211,7 +215,7 @@ class NewSection extends StatelessWidget {
         SizedBox(height: 16),
         Column(
           children: [
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 developerCard("Mudit Choudhary", "assets/images/mudit_img.jpg"),
@@ -261,37 +265,44 @@ Widget developerCard(String name, String imagePath) {
 
 
   return LayoutBuilder(
-    builder: (context,constraints) {
-       double screenWidth = MediaQuery.of(context).size.width;
-    double cardWidth = screenWidth / 2.5; // tweak this factor for balance
-    double cardHeight = cardWidth * 1.1; // adjust ratio to your liking
-      return Container(
-        height: cardHeight,
-        width: cardWidth,
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF353F54),Color(0xFF222834),],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+      builder: (context,constraints) {
+        final theme = Theme.of(context);
+        double screenWidth = MediaQuery.of(context).size.width;
+        double cardWidth = screenWidth / 2.5; // tweak this factor for balance
+        double cardHeight = cardWidth * 1.1; // adjust ratio to your liking
+        return Container(
+          height: cardHeight,
+          width: cardWidth,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: theme.colorScheme.onSurface.withOpacity(0.2),
+              width: 2
+            )
           ),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.white.withOpacity(0.2), width: 2)
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CircleAvatar(radius: 45, backgroundImage: AssetImage(imagePath)),
-            SizedBox(height: 8),
-            Text(
-              name,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.inter(color: Colors.white, fontSize: 17),
-            ),
-          ],
-        ),
-      );
-    }
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircleAvatar(
+                radius: 45,
+                backgroundImage: AssetImage(imagePath),
+                backgroundColor: theme.colorScheme.surface,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                name,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.inter(
+                  color: theme.colorScheme.onSurface,
+                  fontSize: 17
+                ),
+              ),
+            ],
+          ),
+        );
+      }
   );
 }

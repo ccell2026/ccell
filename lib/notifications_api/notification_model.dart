@@ -9,23 +9,23 @@ class NotificationModel {
   final String datePosted;
 
   NotificationModel({
-      required this.id,
-      required this.message,
-      this.sender,
-      required this.eventDate,
-      required this.timing,
-      required this.datePosted,
-      required this.title,
-});
+    required this.id,
+    required this.message,
+    this.sender,
+    required this.eventDate,
+    required this.timing,
+    required this.datePosted,
+    required this.title,
+  });
 
   factory NotificationModel.fromJson(Map<String, dynamic> json){
     return NotificationModel(
-        id: json['id']?? '',
-        message: json['message']?? '',
-        eventDate: DateTime.parse(json['eventDate']),
-        timing: json['timing']?? '',
-        datePosted: json['datePosted']?? '',
-        title: json['title']?? '',
+      id: json['id']?? '',
+      message: json['message']?? '',
+      eventDate: DateTime.parse(json['eventDate']),
+      timing: json['timing']?? '',
+      datePosted: json['datePosted']?? '',
+      title: json['title']?? '',
     );
   }
   Map<String, dynamic> toJson() {
