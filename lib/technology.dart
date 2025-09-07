@@ -73,19 +73,28 @@ class TechnologyCouncil extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: _buildGSecTile(
-                  "Mr. Shivansh Porwal",
+                  "Mr. Tushar Agrawal",
                   "General Secretary",
-                  "8765457211",
+                  "6306263607",
                   "gsec.science@lnmiit.ac.in",
                 ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: _buildGSecTile(
-                  "Ms. Hiya Jain",
+                  "Ms. Anmol Adwani",
                   "Associate General Secretary",
-                  "9701234550",
+                  "9039839018",
                   "agsec.science@lnmiit.ac.in",
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: _buildGSecTile(
+                  "Mr. Devashish Tripathi",
+                  "Finance Convener",
+                  "9473548085",
+                  "",
                 ),
               ),
               SizedBox(height: 10.h),

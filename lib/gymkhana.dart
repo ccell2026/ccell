@@ -60,21 +60,21 @@ class GymkhanaPage extends StatelessWidget {
               ),
               SizedBox(height: 30.h),
               presidentTile(
-                "Mr. Vaibhav Khamesra",
+                "Mr. Hamendra Yadav",
                 "President",
-                "7023659757",
+                "8890605538",
                 "gym.president@lnmiit.ac.in",
               ),
               presidentTile(
-                "Mr. Chirag Mehta",
+                "",
                 "Vice-President",
                 "",
                 "gym.vicepresident@lnmiit.ac.in",
               ),
               presidentTile(
-                "Mr. Jalaj Rastogi",
+                "Mr. Adarsh Mishra",
                 "Finance Convener",
-                "8077054850",
+                "7426046332",
                 "gym.financeconvenor@lnmiit.ac.in",
               ),
               SizedBox(height: 30.h),
@@ -174,14 +174,14 @@ class GymkhanaPage extends StatelessWidget {
                       "Desportivos is the flagship annual sports festival of LNMIIT, proudly hosted by the Sports Council. Recognized as one of the largest collegiate sports fests in Rajasthan, it brings together student-athletes to compete, connect, and celebrate the spirit of the game.\nThis three-day mega event unites more than just teams—it fosters a shared culture of sportsmanship, discipline, and unity. With a diverse lineup of indoor and outdoor sports, including cricket, football, basketball, volleyball, badminton, table tennis, chess, carrom, and more, Desportivos offers a thrilling arena for both competitive glory and personal growth.\nWhat sets Desportivos apart is the unmatched energy on and off the field—where every match is met with roaring crowds, intense rivalries, and moments that become campus legends. It’s a space where adrenaline, ambition, and athleticism converge to create memories that last far beyond the final whistle.\nBehind the seamless execution is a dedicated student organizing team that ensures everything runs like clockwork—from fixtures to fair play.",
                       festHeads: [
                         {
-                          "name": "Chetan Sharma",
-                          "phone": "9761194540",
-                          "email": "22uec033@lnmiit.ac.in",
+                          "name": "Abhas Chaudhary",
+                          "phone": "9411453707",
+                          "email": "23uec502@lnmiit.ac.in",
                         },
                         {
-                          "name": "Sanchay Goel",
-                          "phone": "9997479600",
-                          "email": "22ucs180@lnmiit.ac.in",
+                          "name": "Arnav Rinawa",
+                          "phone": "9166270181",
+                          "email": "23dec504@lnmiit.ac.in",
                         },
                       ],
                       galleryImages: [
@@ -213,14 +213,14 @@ class GymkhanaPage extends StatelessWidget {
                       "Plinth is the annual techno-management fest of LNMIIT Jaipur, turning the campus into a vibrant hub of innovation, competition, and intellectual exploration.Plinth attracts students, creators, and tech enthusiasts from across the country who come together to push the boundaries of what’s possible.\nPlinth embraces the cutting edge of technology, diving deep into areas like robotics, artificial intelligence, cybersecurity, and beyond. The renowned Talk Series features distinguished personalities from the world of tech who share groundbreaking ideas, industry insights, and bold visions for the future. Alongside these, Plinth offers immersive workshops, startup showcases, strategic management contests, and even literary events—ensuring that there's something for every curious mind.\nDriven by LNMIIT’s dynamic student community, Plinth 2025 creates an atmosphere where innovation thrives, collaboration flourishes, and passion for technology takes center stage. As a space where you don’t just witness the future—you build it—Plinth invites you to code, create, and celebrate in an unforgettable three-day experience.",
                       festHeads: [
                         {
-                          "name": "Rajat Sharma",
-                          "phone": "8972192855",
-                          "email": "22uec106@lnmiit.ac.in",
+                          "name": "Akshansh Singh",
+                          "phone": "8448321696",
+                          "email": "23ucs524@lnmiit.ac.in",
                         },
                         {
-                          "name": "Yug Agarwal",
-                          "phone": "8299099721",
-                          "email": "22ucs233@lnmiit.ac.in",
+                          "name": "Jayant Singhal",
+                          "phone": "7878194515",
+                          "email": "23uec555@lnmiit.ac.in",
                         },
                       ],
                       galleryImages: [
@@ -252,14 +252,14 @@ class GymkhanaPage extends StatelessWidget {
                   "Since its inception in 2007, Vivacity has grown into a phenomenon that transcends the definition of a college fest. It’s not just an event—it’s an electrifying celebration of youth, creativity, and cultural spirit that brings the entire campus to life.\nAcross three unforgettable days, Vivacity transforms LNMIIT into a stage where dancers, musicians, artists, dramatists, fashionistas, and performers converge to showcase their brilliance. \nThe fest thrives on its diverse line-up: from street plays and band battles to open mics, poetry slams, and ramp walks, every corner of campus echoes with excitement. \nSpearheaded by an incredibly passionate student team, Vivacity continues to set new benchmarks every year. What makes it unforgettable is not just the scale—but the soul behind it.",
                   festHeads: [
                     {
-                      "name": "Ayush Dhanesha",
-                      "phone": "9998523792",
-                      "email": "22ucs065@lnmiit.ac.in",
+                      "name": "Vedang Dixit",
+                      "phone": "8290956788",
+                      "email": "23uec641@lnmiit.ac.in",
                     },
                     {
-                      "name": "Shubhanshu Singhal",
-                      "phone": "8949024851",
-                      "email": "22ucc101@lnmiit.ac.in",
+                      "name": "Vedant Wadhwa",
+                      "phone": "9897774430",
+                      "email": "23ucc612@lnmiit.ac.in",
                     },
                   ],
                   galleryImages: [

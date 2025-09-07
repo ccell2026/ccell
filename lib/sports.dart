@@ -73,19 +73,28 @@ class SportsCouncil extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: _buildGSecTile(
-                  "Mr. Prem Choudhary",
+                  "Mr. Arihant Bhura",
                   "General Secretary",
-                  "7728834428",
+                  "9345275071",
                   "gsec.sports@lnmiit.ac.in",
                 ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: _buildGSecTile(
-                  "Ms. Rishika Parashar",
+                  "Ms. Priyal Maheshwari",
                   "Associate General Secretary",
-                  "8949351556",
+                  "7727881239",
                   "agsec.sports@lnmiit.ac.in",
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: _buildGSecTile(
+                  "Mr. Raghav Khandelwal",
+                  "Finance Convener",
+                  "8003454873",
+                  "",
                 ),
               ),
               SizedBox(height: 10.h),

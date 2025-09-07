@@ -73,19 +73,28 @@ class CulturalCouncil extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 child: _buildGSecTile(
-                  "Mr. Prateek Lakhotia",
+                  "Mr. Kanishq Singhal",
                   "General Secretary",
-                  "9461179236",
+                  "8005644538",
                   "gsec.cultural@lnmiit.ac.in ",
                 ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal:  10.w),
                 child: _buildGSecTile(
-                  "Ms. Manasvi Sharma ",
+                  "Ms. Ishita Khandelwal",
                   "Associate General Secretary",
-                  "7878177413",
+                  "7597252005",
                   "agsec.cultural@lnmiit.ac.in",
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: _buildGSecTile(
+                  "Mr. Tanmay Jain",
+                  "Finance Convener",
+                  "9039951710",
+                  "",
                 ),
               ),
               SizedBox(height: 10.h,),
