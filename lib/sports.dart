@@ -122,9 +122,9 @@ class SportsCouncil extends StatelessWidget {
                       ],
                       [
                         {
-                          "name": "Abhas Chaudhary",
-                          "phone": "9411453707",
-                          "email": "23uec502@lnmiit.ac.in",
+                          "name": "Naman Agrawal",
+                          "phone": "7877500689",
+                          "email": "23ume535@lnmiit.ac.in",
                         },
                         {
                           "name": "Raman Kumar Singh",

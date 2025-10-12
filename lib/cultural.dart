@@ -315,11 +315,6 @@ class CulturalCouncil extends StatelessWidget {
                           "phone": "7088992992",
                           "email": "23ucs674@lnmiit.ac.in",
                         },
-                        {
-                          "name": "Vedang Dixit",
-                          "phone": "8290956788",
-                          "email": "23uec641@lnmiit.ac.in",
-                        },
                       ],
                       "https://www.instagram.com/insignia_lnm/",
                     ),

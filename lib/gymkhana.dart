@@ -66,9 +66,9 @@ class GymkhanaPage extends StatelessWidget {
                 "gym.president@lnmiit.ac.in",
               ),
               presidentTile(
-                "",
+                "Mr. Priyanshu Kumar",
                 "Vice-President",
-                "",
+                "9964391163",
                 "gym.vicepresident@lnmiit.ac.in",
               ),
               presidentTile(

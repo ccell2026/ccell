@@ -99,7 +99,7 @@ class COSHAScreen extends StatelessWidget {
                       vertical: 4.h,
                     ),
                     title: Text(
-                      "Mr. Ashish Goyal",
+                      "Mr. Rishi Raj",
                       style: GoogleFonts.inter(
                         color: theme.colorScheme.onSurface,
                         fontSize: 14.sp,
@@ -117,7 +117,7 @@ class COSHAScreen extends StatelessWidget {
                       spacing: 12,
                       children: [
                         IconButton(
-                          onPressed: () => _launchPhone("6377079159"),
+                          onPressed: () => _launchPhone("9140003123"),
                           icon: Icon(Icons.call, color: theme.colorScheme.secondary),
                         ),
                         IconButton(
