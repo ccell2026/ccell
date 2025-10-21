@@ -180,7 +180,7 @@ Unauthorized distribution or reproduction is prohibited.
 
 **C-Cell, LNMIIT**  
 📧 Email: c-cell.students@lnmiit.ac.in  
-📸 Instagram: [@ccell_lnmiit](https://instagram.com/ccell_lnmiit)
+📸 Instagram: [@C-CELL LNMIIT](https://instagram.com/ccell.lnmiit?igsh=M3V4dmlvZWFyYXky)
 
 
 ---
