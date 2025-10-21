@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'dart:convert';
 
-import 'notifications_api/notification_model.dart';
+import 'package:login_page/features/notifications/notification_model.dart';
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({Key? key}) : super(key: key);

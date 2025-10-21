@@ -7,7 +7,7 @@ import 'package:login_page/presentation/screens/about/convener_message.dart';
 import 'package:login_page/presentation/widgets/member_section.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'member.dart';
+import 'package:login_page/presentation/widgets/member.dart';
 
 class AboutCCellPage extends StatelessWidget {
   const AboutCCellPage({super.key});

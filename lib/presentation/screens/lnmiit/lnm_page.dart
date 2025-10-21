@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/presentation/screens/lnmiit/campusmap.dart';
 import 'package:login_page/presentation/screens/resources/pdfviewer.dart';
-import 'pages/impContacts.dart';
-import 'pages/hods.dart';
-import 'pages/hostelContacts.dart';
-import 'pages/impLinks.dart';
-import 'pages/curriculum.dart';
+import 'package:login_page/presentation/screens/lnmiit/imp_contacts.dart';
+import 'package:login_page/presentation/screens/lnmiit/hods.dart';
+import 'package:login_page/presentation/screens/lnmiit/hostel_contacts.dart';
+import 'package:login_page/presentation/screens/lnmiit/imp_links.dart';
+import 'package:login_page/presentation/screens/lnmiit/curriculum.dart';
 
 class LNMPage extends StatelessWidget {
   const LNMPage({super.key});

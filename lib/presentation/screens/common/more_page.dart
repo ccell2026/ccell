@@ -5,10 +5,7 @@ import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:login_page/presentation/screens/about/about_ccell_page.dart';
-import 'package:login_page/notifications_api/post_screen.dart';
-
-import 'AboutCCellPage.dart';
-import 'notifications_api/post_screen.dart';
+import 'package:login_page/features/notifications/post_screen.dart';
 
 class MorePage extends StatefulWidget {
   const MorePage({super.key});

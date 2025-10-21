@@ -4,13 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'hostel_registration.dart';
 import 'document_verification.dart';
-import 'implocations.dart';
+import 'package:login_page/presentation/screens/lnmiit/imp_locations.dart';
 import 'biometric_screen.dart';
 import 'credential_collection.dart';
-import 'anti_ragging.dart';
-import 'login_page.dart';
-import 'welcome_screen.dart';
-import 'idcard.dart'; 
+import 'package:login_page/presentation/screens/onboarding/anti_ragging.dart';
+import 'package:login_page/presentation/screens/auth/login_page.dart';
+import 'package:login_page/presentation/screens/auth/welcome_screen.dart';
+import 'package:login_page/presentation/screens/onboarding/idcard.dart';
 
 class ChecklistScreen extends StatefulWidget {
   const ChecklistScreen({super.key});

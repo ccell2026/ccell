@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:login_page/notifications_api/notification_model.dart';
+import 'package:login_page/features/notifications/notification_model.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<NotificationModel>> fetchNotifications() async {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:login_page/notifications_api/post_notifications.dart';
+import 'package:login_page/features/notifications/post_notifications.dart';
 import 'notification_model.dart';
 import 'package:flutter/services.dart';
 

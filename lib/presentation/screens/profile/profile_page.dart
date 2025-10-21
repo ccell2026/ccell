@@ -9,7 +9,7 @@ import 'package:login_page/presentation/screens/auth/login_page.dart';
 import 'dart:io' show File;
 import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
 import 'package:image_picker/image_picker.dart';
-import 'utils/guest_id_manager.dart';
+import 'package:login_page/core/utils/guest_id_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:login_page/core/theme/theme_provider.dart';
 
