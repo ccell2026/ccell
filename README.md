@@ -1,124 +1,89 @@
-📱 C-Cell LNMIIT — Official Student App
+# 📱 C-Cell LNMIIT — Official Student App
 
-<p align="center"> <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Flutter-3.8.1+-02569B?style=for-the-badge&logo=flutter&logoColor=white" /></a> <a href="https://firebase.google.com"><img src="https://img.shields.io/badge/Firebase-Backend-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" /></a> <a href="https://dart.dev"><img src="https://img.shields.io/badge/Dart-Language-0175C2?style=for-the-badge&logo=dart&logoColor=white" /></a> <a href="#"><img src="https://img.shields.io/badge/Platform-Android%20|%20iOS%20|%20Web-34A853?style=for-the-badge&logo=google" /></a> <a href="#"><img src="https://img.shields.io/badge/License-Private-red?style=for-the-badge" /></a> </p>
-📖 About
+<p align="center">
+  <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Flutter-3.8.1+-02569B?style=for-the-badge&logo=flutter&logoColor=white" /></a>
+  <a href="https://firebase.google.com"><img src="https://img.shields.io/badge/Firebase-Backend-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" /></a>
+  <a href="https://dart.dev"><img src="https://img.shields.io/badge/Dart-Language-0175C2?style=for-the-badge&logo=dart&logoColor=white" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Platform-Android%20|%20iOS%20|%20Web-34A853?style=for-the-badge&logo=google" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/License-Private-red?style=for-the-badge" /></a>
+</p>
 
-The official mobile and web application for the Counselling and Guidance Cell (C-Cell) at The LNM Institute of Information Technology (LNMIIT), Jaipur.
+## 📖 About
+
+The official mobile and web application for the **Counselling and Guidance Cell (C-Cell)** at **The LNM Institute of Information Technology (LNMIIT)**, Jaipur.
+
 This comprehensive platform serves as the central hub for student life, providing access to academic resources, campus information, student organizations, and real-time notifications.
 
-✨ Key Features
-🏠 Home Dashboard
+## ✨ Key Features
 
-Personalized welcome screen with user profile
+### 🏠 Home Dashboard
+- Personalized welcome screen with user profile
+- Quick access to 6+ essential campus services
+- Real-time statistics (25+ active clubs, 7 departments)
+- Academic calendar, bus timetable, mess menu
+- Campus navigation and location finder
 
-Quick access to 6+ essential campus services
+### 🎯 Student Gymkhana
+- Complete information about Student Gymkhana leadership
+- Presidential Council with contact details
+- **Cultural Council** – 11 clubs: Aaveg, Capriccio, Eminence, Fundoo, Imagination, Insignia, LC, Media Cell, Rendition, Sankalp, Vignette
+- **Science & Technology Council** – 7 clubs: Astronomy, Cipher Club, Cybros, DebSoc, E-Cell, Phoenix, Quizzinga
+- **Sports Council** – 11 sports: Badminton, Basketball, Chess, Cricket, Football, Kabaddi, Lawn Tennis, Squash, Table Tennis, Volleyball
+- COSHA Committee information
+- **Major fest details**: Desportivos (Sports), Plinth (Tech-Management), Vivacity (Cultural)
+- **Student events**: TEDxLNMIIT, E-Summit
 
-Real-time statistics (25+ active clubs, 7 departments)
+### 🔔 Push Notifications
+- Real-time Firebase Cloud Messaging (FCM) integration
+- Cross-platform support (Android, iOS, Web)
+- Topic-based subscriptions (all-users, department-specific)
+- Background notification handling
+- Custom Notification API integration
+- Guest user support with account merging
 
-Academic calendar, bus timetable, mess menu
+### 🏛️ LNMIIT Information
+- Faculty contacts and HOD information
+- Hostel contacts and administration
+- Campus map with interactive navigation
+- Academic area map (PDF viewer)
+- Department-wise curriculum (CSE, CCE, ECE, MME, M.Tech)
+- Important institutional links
+- Director's message
 
-Campus navigation and location finder
+### 👤 User Profile
+- Google Sign-In authentication (LNMIIT email only)
+- Auto-extracted student details (Roll number, Branch, Batch, Degree)
+- Custom profile picture upload
+- Light/Dark theme toggle
+- Secure sign-out functionality
 
-🎯 Student Gymkhana
+### 🌓 Theme Support
+- Dynamic light and dark mode
+- Material Design 3 theming
+- Smooth theme transitions
+- Persistent theme preferences
 
-Complete information about Student Gymkhana leadership
+### ℹ️ About C-Cell
+- Team information (Coordinators, Associate Coordinators, Mentors)
+- Convener message
+- App developer credits
+- Contact information
 
-Presidential Council with contact details
+## 🛠️ Tech Stack
 
-Cultural Council – 11 clubs: Aaveg, Capriccio, Eminence, Fundoo, Imagination, Insignia, LC, Media Cell, Rendition, Sankalp, Vignette
+### Frontend
+- **Flutter 3.8.1+** — Cross-platform UI framework
+- **Dart** — Programming language
+- **Material Design 3** — UI/UX design system
 
-Science & Technology Council – 7 clubs: Astronomy, Cipher Club, Cybros, DebSoc, E-Cell, Phoenix, Quizzinga
+### Backend & Services
+- **Firebase Authentication** — Google Sign-In
+- **Firebase Cloud Messaging** — Push notifications
+- **Firebase Hosting** — Web deployment
+- **Custom Notification API**: `ccell-notification-api.onrender.com`
 
-Sports Council – 11 sports: Badminton, Basketball, Chess, Cricket, Football, Kabaddi, Lawn Tennis, Squash, Table Tennis, Volleyball
-
-COSHA Committee information
-
-Major fest details: Desportivos (Sports), Plinth (Tech-Management), Vivacity (Cultural)
-
-Student events: TEDx LNMIIT, E-Summit
-
-🔔 Push Notifications
-
-Real-time Firebase Cloud Messaging (FCM) integration
-
-Cross-platform support (Android, iOS, Web)
-
-Topic-based subscriptions (all-users, department-specific)
-
-Background notification handling
-
-Custom Notification API integration
-
-Guest user support with account merging
-
-🏛️ LNMIIT Information
-
-Faculty contacts and HOD information
-
-Hostel contacts and administration
-
-Campus map with interactive navigation
-
-Academic area map (PDF viewer)
-
-Department-wise curriculum (CSE, CCE, ECE, MME, M.Tech)
-
-Important institutional links
-
-Director’s message
-
-👤 User Profile
-
-Google Sign-In authentication (LNMIIT email only)
-
-Auto-extracted student details (Roll number, Branch, Batch, Degree)
-
-Custom profile picture upload
-
-Light/Dark theme toggle
-
-Secure sign-out functionality
-
-🌓 Theme Support
-
-Dynamic light and dark mode
-
-Material Design 3 theming
-
-Smooth theme transitions
-
-Persistent theme preferences
-
-ℹ️ About C-Cell
-
-Team information (Coordinators, Associate Coordinators, Mentors)
-
-Convener message
-
-App developer credits
-
-Contact information
-
-🛠️ Tech Stack
-Frontend
-
-Flutter 3.8.1+ — Cross-platform UI framework
-
-Dart — Programming language
-
-Material Design 3 — UI/UX design system
-
-Backend & Services
-
-Firebase Authentication — Google Sign-In
-
-Firebase Cloud Messaging — Push notifications
-
-Firebase Hosting — Web deployment
-
-Custom Notification API: ccell-notification-api.onrender.com
-
-Key Packages
+### Key Packages
+```yaml
 firebase_core: ^3.15.2
 firebase_auth: ^5.6.0
 firebase_messaging: ^15.2.10
@@ -131,8 +96,11 @@ google_fonts: ^6.2.1
 flutter_screenutil: ^5.9.3
 salomon_bottom_bar: ^3.3.2
 syncfusion_flutter_pdfviewer: ^30.1.41
+```
 
-📂 Project Structure
+## 📂 Project Structure
+
+```
 lib/
 ├── core/
 │   ├── config/          # Firebase configuration
@@ -157,137 +125,64 @@ lib/
 │   │   └── resources/   # PDF viewer, COSHA
 │   └── widgets/         # Reusable UI components
 └── main.dart            # App entry point
+```
 
-🚀 Getting Started
-Prerequisites
+## 🚀 Getting Started
 
-Flutter SDK 3.8.1 or higher
+## 🔐 Authentication
 
-Dart SDK
+The app uses **Firebase Authentication** with **Google Sign-In**, restricted to LNMIIT email addresses (`@lnmiit.ac.in`).
 
-Android Studio / Xcode (for mobile development)
-
-Firebase account with project setup
-
-Installation
-git clone <repository-url>
-cd ccell
-
-Install dependencies
-flutter pub get
-
-Configure Firebase
-
-Add google-services.json to android/app/
-
-Add GoogleService-Info.plist to ios/Runner/
-
-Ensure firebase_options.dart is configured
-
-Run the app
-# Android
-flutter run
-
-# iOS
-flutter run -d ios
-
-# Web
-flutter run -d chrome
-
-Build for Production
-# Android APK
-flutter build apk --release
-
-# Android App Bundle
-flutter build appbundle --release
-
-# iOS
-flutter build ios --release
-
-# Web
-flutter build web --release
-
-🔐 Authentication
-
-The app uses Firebase Authentication with Google Sign-In, restricted to LNMIIT email addresses (@lnmiit.ac.in).
 Guest users can browse limited content, with the ability to merge their account upon sign-in.
 
-📬 Notification System
-Architecture
+## 📬 Notification System
 
-Mobile: Native FCM with local notifications
+### Architecture
+- **Mobile**: Native FCM with local notifications
+- **Web**: FCM with VAPID key support
+- **Backend**: Custom Node.js API for token management and topic subscriptions
 
-Web: FCM with VAPID key support
+### Features
+- Topic-based subscriptions (all-users, department-specific)
+- Foreground and background notification handling
+- Guest user support with account merging
+- Authorized sender verification for posting notifications
 
-Backend: Custom Node.js API for token management and topic subscriptions
+## 🎨 Design Philosophy
+- Material Design 3 principles
+- Responsive layouts for mobile, tablet, and desktop
+- Smooth animations and transitions
+- Accessibility-first approach
+- Dark mode support throughout
 
-Features
+## 👥 Team
 
-Topic-based subscriptions (all-users, department-specific)
+### Coordinators
+- Aditya Kansal
+- Kunal Sharma
+- Neha Raniwala
 
-Foreground and background notification handling
+### App Developers
+- Mudit Choudhary
+- Yash Raj
+- Praneel Dev
+- Panth Moradia
+- Nikhila S Hari
+- Ishita Agarwal
+- Armaan Jain
 
-Guest user support with account merging
+## 📄 License
 
-Authorized sender verification for posting notifications
-
-🎨 Design Philosophy
-
-Material Design 3 principles
-
-Responsive layouts for mobile, tablet, and desktop
-
-Smooth animations and transitions
-
-Accessibility-first approach
-
-Dark mode support throughout
-
-👥 Team
-Coordinators
-
-Aditya Kansal
-
-Kunal Sharma
-
-Neha Raniwala
-
-App Developers
-
-Mudit Choudhary
-
-Yash Raj
-
-Praneel Dev
-
-Panth Moradia
-
-Nikhila S Hari
-
-Ishita Agarwal
-
-Armaan Jain
-
-📄 License
-
-This project is private and proprietary to C-Cell, LNMIIT.
+This project is **private and proprietary** to C-Cell, LNMIIT.  
 Unauthorized distribution or reproduction is prohibited.
 
-📞 Contact
+## 📞 Contact
 
-C-Cell, LNMIIT
-📧 Email: c-cell.students@lnmiit.ac.in
+**C-Cell, LNMIIT**  
+📧 Email: c-cell.students@lnmiit.ac.in  
+📸 Instagram: [@ccell_lnmiit](https://instagram.com/ccell_lnmiit)
 
-📸 Instagram: @ccell_lnmiit
 
-🙏 Acknowledgments
+---
 
-LNMIIT Administration
-
-Student Gymkhana
-
-All club coordinators and members
-
-Faculty advisors
-
-Made with ❤️ by C-Cell LNMIIT
+<p align="center">Made with ❤️ by C-Cell LNMIIT</p>
