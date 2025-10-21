@@ -19,11 +19,11 @@ This comprehensive platform serves as the central hub for student life, providin
 # Android
 - [Playstore Release](https://play.google.com/store/apps/details?id=com.lnmiit.ccell)
 
-- [Web](ccellapp.in)
+- [Web](https://ccellapp.in)
 
 # iOS
 
-- [Web](ccellapp.in)
+- [Web](https://ccellapp.in)
 
 ## ✨ Key Features
 
