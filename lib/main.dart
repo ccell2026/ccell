@@ -5,28 +5,28 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:login_page/login_page.dart';
-import 'package:login_page/more_page.dart';
-import 'package:login_page/home_page.dart';
-import 'package:login_page/notifications_screen.dart';
-import 'package:login_page/profile_page.dart';
-import 'package:login_page/services/notification_service.dart';
-import 'package:login_page/theme_provider.dart';
-import 'package:login_page/welcome_screen.dart';
-import 'package:login_page/hostel_registration.dart';
-import 'package:login_page/loading_screen.dart';
+import 'package:login_page/presentation/screens/auth/login_page.dart';
+import 'package:login_page/presentation/screens/common/more_page.dart';
+import 'package:login_page/presentation/screens/home/home_page.dart';
+import 'package:login_page/presentation/screens/notifications/notifications_screen.dart';
+import 'package:login_page/presentation/screens/profile/profile_page.dart';
+import 'package:login_page/data/services/notification_service.dart';
+import 'package:login_page/core/theme/theme_provider.dart';
+import 'package:login_page/presentation/screens/auth/welcome_screen.dart';
+import 'package:login_page/presentation/screens/onboarding/hostel_registration.dart';
+import 'package:login_page/presentation/screens/home/loading_screen.dart';
 
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'gymkhana.dart';
+import 'presentation/screens/gymkhana/gymkhana.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'lnm_page.dart';
-import 'firebase_options.dart';
+import 'presentation/screens/lnmiit/lnm_page.dart';
+import 'core/config/firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:login_page/coming_soon_page.dart';
-import 'package:provider/provider.dart'; // modified by cursor - added provider import
+import 'package:login_page/presentation/screens/common/coming_soon_page.dart';
+import 'package:provider/provider.dart';
 
-import 'notification_repository.dart';
+import 'data/repositories/notification_repository.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {

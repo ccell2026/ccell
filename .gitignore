@@ -59,3 +59,4 @@ android/app/my-release-key.jks
 .vercel
 
 secrets.env
+/update_imports.sh
