@@ -14,6 +14,17 @@ The official mobile and web application for the **Counselling and Guidance Cell 
 
 This comprehensive platform serves as the central hub for student life, providing access to academic resources, campus information, student organizations, and real-time notifications.
 
+## Release
+
+# Android
+- [Playstore Release](https://play.google.com/store/apps/details?id=com.lnmiit.ccell)
+
+- [Web](ccellapp.in)
+
+# iOS
+
+- [Web](ccellapp.in)
+
 ## ✨ Key Features
 
 ### 🏠 Home Dashboard
