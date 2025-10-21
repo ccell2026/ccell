@@ -140,7 +140,7 @@ Guest users can browse limited content, with the ability to merge their account 
 ### Architecture
 - **Mobile**: Native FCM with local notifications
 - **Web**: FCM with VAPID key support
-- **Backend**: Custom Node.js API for token management and topic subscriptions
+- **Backend**: Custom SpringBoot API for token management and topic subscriptions
 
 ### Features
 - Topic-based subscriptions (all-users, department-specific)
