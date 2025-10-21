@@ -2,16 +2,16 @@ import 'dart:convert';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:login_page/services/theme_provider.dart';
+import 'package:login_page/core/theme/theme_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:login_page/login_page.dart';
+import 'package:login_page/presentation/screens/auth/login_page.dart';
 import 'dart:io' show File;
 import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
 import 'package:image_picker/image_picker.dart';
 import 'utils/guest_id_manager.dart';
 import 'package:provider/provider.dart';
-import 'package:login_page/theme_provider.dart';
+import 'package:login_page/core/theme/theme_provider.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login_page/campusmap.dart';
-import 'package:login_page/pdfviewer.dart';
+import 'package:login_page/presentation/screens/lnmiit/campusmap.dart';
+import 'package:login_page/presentation/screens/resources/pdfviewer.dart';
 import 'pages/impContacts.dart';
 import 'pages/hods.dart';
 import 'pages/hostelContacts.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login_page/NewMember.dart';
+import 'package:login_page/presentation/widgets/new_member.dart';
 
 class TeamMentors extends StatelessWidget {
   final String title;

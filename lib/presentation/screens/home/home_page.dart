@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login_page/lnm_page.dart';
-import 'package:login_page/profile_page.dart';
+import 'package:login_page/presentation/screens/lnmiit/lnm_page.dart';
+import 'package:login_page/presentation/screens/profile/profile_page.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:login_page/gymkhana.dart';
-import 'package:login_page/notifications_screen.dart';
-import 'package:login_page/coming_soon_page.dart';
+import 'package:login_page/presentation/screens/gymkhana/gymkhana.dart';
+import 'package:login_page/presentation/screens/notifications/notifications_screen.dart';
+import 'package:login_page/presentation/screens/common/coming_soon_page.dart';
 
-import 'main.dart';
+import '../../../main.dart';
 
 class HomePage extends StatelessWidget {
   final String userName;

@@ -3,11 +3,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:login_page/loading_screen.dart';
+import 'package:login_page/presentation/screens/home/loading_screen.dart';
 import 'package:login_page/notifications_api/notification_state.dart';
-import 'package:login_page/utils/guest_id_manager.dart';
+import 'package:login_page/core/utils/guest_id_manager.dart';
 import 'package:provider/provider.dart'; // modified by cursor - added provider import
-import 'notification_repository.dart'; // modified by cursor - added notification repository import
+import 'data/repositories/notification_repository.dart'; // modified by cursor - added notification repository import
 
 
 

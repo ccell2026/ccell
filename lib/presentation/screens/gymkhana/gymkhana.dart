@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login_page/cosha.dart';
-import 'package:login_page/cultural.dart';
-import 'package:login_page/fest_card.dart';
-import 'package:login_page/sports.dart';
-import 'package:login_page/technology.dart';
+import 'package:login_page/presentation/screens/resources/cosha.dart';
+import 'package:login_page/presentation/screens/gymkhana/cultural.dart';
+import 'package:login_page/presentation/widgets/fest_card.dart';
+import 'package:login_page/presentation/screens/gymkhana/sports.dart';
+import 'package:login_page/presentation/screens/gymkhana/technology.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:login_page/theme_provider.dart';
+import 'package:login_page/core/theme/theme_provider.dart';
 
 class GymkhanaPage extends StatelessWidget {
 

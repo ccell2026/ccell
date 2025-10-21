@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:login_page/AboutCCellPage.dart';
+import 'package:login_page/presentation/screens/about/about_ccell_page.dart';
 import 'package:login_page/notifications_api/post_screen.dart';
 
 import 'AboutCCellPage.dart';

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login_page/NewMember.dart';
+import 'package:login_page/presentation/widgets/new_member.dart';
 
-import 'package:login_page/TeamMentors.dart';
-import 'package:login_page/convenerMessage.dart';
-import 'package:login_page/member_section.dart';
+import 'package:login_page/presentation/screens/about/team_mentors.dart';
+import 'package:login_page/presentation/screens/about/convener_message.dart';
+import 'package:login_page/presentation/widgets/member_section.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'member.dart';

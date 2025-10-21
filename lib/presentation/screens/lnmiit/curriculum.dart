@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/pdfviewer.dart';
+import 'package:login_page/presentation/screens/resources/pdfviewer.dart';
 
 class CurriculumPage extends StatelessWidget {
   const CurriculumPage({super.key});

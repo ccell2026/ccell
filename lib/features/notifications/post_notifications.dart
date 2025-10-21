@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'notification_model.dart';
-import 'package:login_page/profile_page.dart';
+import 'package:login_page/presentation/screens/profile/profile_page.dart';
 
 Future<void> postNotification(NotificationModel notification, String email) async {
   final url = Uri.parse('https://ccell-notification-api.onrender.com/api/notifications'); // Replace with your real URL

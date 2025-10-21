@@ -1,7 +1,7 @@
 // lib/welcome_screen.dart
 import 'package:flutter/material.dart';
-import 'package:login_page/login_page.dart'; // Import the new LoginPage location
-import 'package:login_page/checklist.dart';
+import 'package:login_page/presentation/screens/auth/login_page.dart'; // Import the new LoginPage location
+import 'package:login_page/presentation/screens/onboarding/checklist.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

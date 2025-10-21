@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:login_page/idcard.dart';
+import 'package:login_page/presentation/screens/profile/idcard.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';

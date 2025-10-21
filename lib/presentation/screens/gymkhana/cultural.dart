@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:login_page/council.dart';
+import 'package:login_page/presentation/screens/about/council.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CulturalCouncil extends StatelessWidget {

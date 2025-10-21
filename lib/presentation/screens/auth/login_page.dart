@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login_page/google_sign_in.dart';
-import 'package:login_page/welcome_screen.dart';
+import 'package:login_page/presentation/screens/auth/google_sign_in.dart';
+import 'package:login_page/presentation/screens/auth/welcome_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatefulWidget {
